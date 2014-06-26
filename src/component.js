@@ -24,8 +24,9 @@ Em.DatePickerComponent = Em.TextField.extend({
           onSelect: function() {
             that.set('date', moment(that.get('value')));
           }
-        });
-    picker.setDate(that.get('defaultDate'));
+        }),
+        dd = that.get('date') || that.get('defaultDate');
+    picker.setDate(moment(dd).format(that.get('format')));
     this.set("_picker", picker);
   }
 });
