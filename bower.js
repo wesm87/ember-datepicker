@@ -15,6 +15,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "ember": ">=1.5.0"
+    "ember": ">=1.5.0",
+    "moment": ">=2.7.0"
   }
 }
