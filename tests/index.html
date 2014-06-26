@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ember Date Picker tests</title>
+  <script src="http:///cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
+  <script src="http://builds.emberjs.com/ember-latest.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+  <script src="../libs/pikaday.js"></script>
+  <script src="../ember-datepicker.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.14.0.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script type="text/javascript">
+    App = Ember.Application.create();
+    App.Router.map(function() {
+      this.route('index', {path: '/'});
+    });
+
+    App.IndexController = Em.Controller.extend({
+      date: moment(),
+      formattedDate: function() {
+        return this.get('date').format('DD/MM/YYYY');
+      }.property('date'),
+      timestamp: function() {
+        return this.get('date').format('X');
+      }.property('date')
+    });
+  </script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="http://code.jquery.com/qunit/qunit-1.14.0.js"></script>
+  <script src="tests.js"></script>
+  <script type="text/x-handlebars" data-template-name="index">
+    <div class="row">
+      <div class="col-md-6">
+        {{date-picker class="datepicker" date=date defaultDate="01/02/2013"}}
+      </div>
+      <div class="col-md-6">
+        <dl class="dl-horizontal">
+          <dt id="formatted">Formatted date</dt><dd>{{formattedDate}}</dd>
+          <dt id="timestamp">Timestamp</dt><dd>{{timestamp}}</dd>
+        </dl>
+      </div>
+    </div>
+  </script>
+</body>
+</html>

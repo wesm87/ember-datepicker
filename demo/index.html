@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../libs/pikaday.css" rel="stylesheet">
+  <script src="http:///cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+  <script src="http://builds.emberjs.com/ember-latest.js"></script>
+  <script src="../libs/pikaday.js"></script>
+  <script src="../ember-datepicker.js"></script>
+  <script type="text/javascript">
+    App = Ember.Application.create();
+    App.Router.map(function() {
+      this.route('index', {path: '/'});
+    });
+
+    App.IndexController = Em.Controller.extend({
+      date: moment(),
+      formattedDate: function() {
+        return this.get('date').format('DD/MM/YYYY');
+      }.property('date'),
+      timestamp: function() {
+        return this.get('date').format('X');
+      }.property('date')
+    });
+  </script>
+  <title>Ember Date Picker Test</title>
+</head>
+<body>
+  <script type="text/x-handlebars" data-template-name="index">
+    <div class="row">
+      <div class="col-md-6">
+        {{date-picker date=date defaultDate="01/02/2013"}}
+      </div>
+      <div class="col-md-6">
+        <dl class="dl-horizontal">
+          <dt>Formatted date</dt><dd>{{formattedDate}}</dd>
+          <dt>Timestamp</dt><dd>{{timestamp}}</dd>
+        </dl>
+      </div>
+    </div>
+  </script>
+</body>
+</html>
