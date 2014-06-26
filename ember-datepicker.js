@@ -1,5 +1,6 @@
 (function() {
   Em.DatePickerComponent = Em.TextField.extend({
+    isUnix: true,
     format: 'YYYY-MM-DD',
     defaultDate: function() {  // must be a moment value
       return moment().format(this.get('format'));
@@ -22,8 +23,12 @@
               that.set('date', moment(that.get('value')));
             }
           }),
-          dd = that.get('date') || that.get('defaultDate');
-      picker.setDate(moment(dd).format(that.get('format')));
+          dd = that.get('date');
+      if (this.get('isUnix') && !Em.isBlank(dd)) {
+        picker.setDate(moment.unix(dd).format(that.get('format')));
+      } else {
+        picker.setDate(moment(dd).format(that.get('format')));
+      }
       this.set("_picker", picker);
     }
   });
