@@ -1,6 +1,6 @@
 {
   "name": "ember-multiselect",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "An Ember datepicker component using Pikaday and momentjs",
   "main": "./ember-datepicker.js",
   "keywords": [

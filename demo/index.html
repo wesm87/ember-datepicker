@@ -16,12 +16,12 @@
     });
 
     App.IndexController = Em.Controller.extend({
-      date: moment(),
+      date: '2014-02-01',
       formattedDate: function() {
-        return this.get('date').format('DD/MM/YYYY');
+        return moment(this.get('date'), 'YYYY-MM-DD').format('DD/MM/YYYY');
       }.property('date'),
       timestamp: function() {
-        return this.get('date').format('X');
+        return moment(this.get('date'), 'YYYY-MM-DD').format('X');
       }.property('date')
     });
   </script>
@@ -31,7 +31,7 @@
   <script type="text/x-handlebars" data-template-name="index">
     <div class="row">
       <div class="col-md-6">
-        {{date-picker date=date defaultDate="01/02/2013"}}
+        {{date-picker date=date valueFormat='YYYY-MM-DD'}}
       </div>
       <div class="col-md-6">
         <dl class="dl-horizontal">
