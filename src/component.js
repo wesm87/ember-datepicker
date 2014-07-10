@@ -20,7 +20,7 @@ Em.DatePickerComponent = Em.TextField.extend({
           format: that.get('outputFormat'),
           yearRange: that.get('yearRange'),
           numberOfMonths: that.get('numberOfMonths'),
-          onSelect: function() {
+          onClose: function() {
             // update date value with user selected date. Keeps format 
             // consistent
             var d = moment(that.get('value'), that.get('outputFormat'))
