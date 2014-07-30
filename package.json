@@ -1,0 +1,30 @@
+{
+  "name": "ember-datepicker",
+  "version": "0.2.2",
+  "description": "An Ember datepicker component using Pikaday and momentjs",
+  "main": "dist/ember-datepicker.js",
+  "keywords": [
+    "ember",
+    "datepicker",
+    "ember-datepicker"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gevious/ember-datepicker"
+  },
+  "author": "Nico Gevers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gevious/ember-datepicker/issues"
+  },
+  "homepage": "https://github.com/gevious/ember-datepicker",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-watch": "~0.4.0"
+  }
+}
