@@ -1,8 +1,4 @@
-/**
- * Displays a text field with the date in correct format. On click it opens
- * the calendar widget.
- */
-Em.DatePickerComponent = Em.TextField.extend({
+export default Em.TextField.extend({
   valueFormat: 'X',  // by default expect a unix timestamp
   outputFormat: 'YYYY-MM-DD', // the format to display in the text field
   runningDate: moment(),
@@ -40,5 +36,3 @@ Em.DatePickerComponent = Em.TextField.extend({
     this.get('_picker').setDate(d.format(this.get('outputformat')));
   }
 });
-
-Em.Handlebars.helper('date-picker', Em.DatePickerComponent);

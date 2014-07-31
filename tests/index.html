@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Ember Date Picker tests</title>
-  <script src="http:///cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
-  <script src="http://builds.emberjs.com/ember-latest.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
-  <script src="../libs/pikaday.js"></script>
-  <script src="../ember-datepicker.js"></script>
-  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.14.0.css">
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <script type="text/javascript">
-    App = Ember.Application.create();
-    App.Router.map(function() {
-      this.route('index', {path: '/'});
-    });
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EmberDatepicker Tests</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    App.IndexController = Em.Controller.extend({
-      date: moment(),
-      formattedDate: function() {
-        return this.get('date').format('DD/MM/YYYY');
-      }.property('date'),
-      timestamp: function() {
-        return this.get('date').format('X');
-      }.property('date')
-    });
-  </script>
-</head>
-<body>
-  <div id="qunit"></div>
-  <div id="qunit-fixture"></div>
-  <script src="http://code.jquery.com/qunit/qunit-1.14.0.js"></script>
-  <script src="tests.js"></script>
-  <script type="text/x-handlebars" data-template-name="index">
-    <div class="row">
-      <div class="col-md-6">
-        {{date-picker class="datepicker" date=date defaultDate="01/02/2013"}}
-      </div>
-      <div class="col-md-6">
-        <dl class="dl-horizontal">
-          <dt id="formatted">Formatted date</dt><dd>{{formattedDate}}</dd>
-          <dt id="timestamp">Timestamp</dt><dd>{{timestamp}}</dd>
-        </dl>
-      </div>
-    </div>
-  </script>
-</body>
+    {{BASE_TAG}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/ember-datepicker.css">
+    <link rel="stylesheet" href="assets/qunit.css">
+    <style>
+      #ember-testing-container {
+        position: absolute;
+        background: white;
+        bottom: 0;
+        right: 0;
+        width: 640px;
+        height: 384px;
+        overflow: auto;
+        z-index: 9999;
+        border: 1px solid #ccc;
+      }
+      #ember-testing {
+        zoom: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <script>
+      window.EmberDatepickerENV = {{ENV}};
+      window.EmberENV = window.EmberDatepickerENV.EmberENV;
+    </script>
+    <script src="assets/qunit.js"></script>
+    <script src="assets/qunit-notifications.js"></script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/ember-datepicker.js"></script>
+    <script src="testem.js"></script>
+    <script>
+      require('ember-datepicker/tests/test-helper');
+    </script>
+    <script src="assets/test-loader.js"></script>
+  </body>
 </html>
