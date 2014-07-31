@@ -8,7 +8,6 @@
     "datepicker",
     "ember-datepicker"
   ],
-  "private": true,
   "directories": {
     "doc": "doc",
     "test": "test"
