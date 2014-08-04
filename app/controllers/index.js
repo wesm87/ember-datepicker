@@ -1,3 +1,5 @@
+import Em from 'ember';
+import moment from 'vendor/ember-cli-datepicker/js/moment';
 export default Em.Controller.extend({
   date: '2014-02-01',
   formattedDate: function() {

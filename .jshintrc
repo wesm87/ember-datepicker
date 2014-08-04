@@ -2,9 +2,6 @@
   "predef": {
     "document": true,
     "window": true,
-    "Em": true,
-    "moment": true,
-    "Pikaday": true,
     "EmberDatepickerENV": true
   },
   "browser" : true,

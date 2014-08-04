@@ -1,3 +1,7 @@
+import Em from 'ember';
+import moment from 'vendor/ember-cli-datepicker/js/moment';
+import Pikaday from 'vendor/ember-cli-datepicker/js/pikaday';
+
 export default Em.TextField.extend({
   valueFormat: 'X',  // by default expect a unix timestamp
   outputFormat: 'YYYY-MM-DD', // the format to display in the text field
