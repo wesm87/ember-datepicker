@@ -13,14 +13,12 @@
     <link rel="stylesheet" href="assets/ember-cli-datepicker.css">
   </head>
   <body>
-    <script>
-      window.EmberDatepickerENV = {{ENV}};
-      window.EmberENV = window.EmberDatepickerENV.EmberENV;
-    </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/ember-cli-datepicker.js"></script>
     <script>
-      window.EmberDatepicker = require('ember-cli-datepicker/app')['default'].create(EmberDatepickerENV.APP);
+      window.EmberCliDatepickerENV = require('ember-cli-datepicker/config/environment')['default'];
+      window.EmberENV = window.EmberCliDatepickerENV.EmberENV;
+      window.EmberCliDatepicker= require('ember-cli-datepicker/app')['default'].create(EmberCliDatepickerENV.APP);
     </script>
   </body>
 </html>

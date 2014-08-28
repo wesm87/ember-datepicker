@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EmberDatepicker Tests</title>
+    <title>EmberCliDatepicker Tests</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{BASE_TAG}}
 
     <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/ember-datepicker.css">
-    <link rel="stylesheet" href="assets/qunit.css">
+    <link rel="stylesheet" href="assets/ember-cli-datepicker.css">
+    <link rel="stylesheet" href="assets/test-support.css">
     <style>
       #ember-testing-container {
         position: absolute;
@@ -33,17 +33,15 @@
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
 
-    <script>
-      window.EmberDatepickerENV = {{ENV}};
-      window.EmberENV = window.EmberDatepickerENV.EmberENV;
-    </script>
-    <script src="assets/qunit.js"></script>
-    <script src="assets/qunit-notifications.js"></script>
     <script src="assets/vendor.js"></script>
-    <script src="assets/ember-datepicker.js"></script>
+    <script src="assets/test-support.js"></script>
+    <script src="assets/ember-cli-datepicker.js"></script>
     <script src="testem.js"></script>
     <script>
-      require('ember-datepicker/tests/test-helper');
+      window.EmberCliDatepickerENV = require('ember-cli-datepicker/config/environment')['default'];
+      window.EmberENV = window.EmberCliDatepickerENV.EmberENV;
+
+      require('ember-cli-datepicker/tests/test-helper');
     </script>
     <script src="assets/test-loader.js"></script>
   </body>

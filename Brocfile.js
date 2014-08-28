@@ -1,7 +1,7 @@
 var mergeTrees = require('broccoli-merge-trees');
 
 var appTree    = mergeTrees(['app', 'app-addon'], { overwrite: true });
-var vendorTree = mergeTrees(['vendor', 'vendor-addon']);
+var vendorTree = mergeTrees(['bower_components', 'vendor-addon']);
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
@@ -12,9 +12,9 @@ var app = new EmberApp({
   }
 });
 
-app.import('vendor/ember-cli-datepicker/js/moment.js');
-app.import('vendor/ember-cli-datepicker/js/pikaday.js');
-app.import('vendor/ember-cli-datepicker/styles/pikaday.css');
+app.import('bower_components/ember-cli-datepicker/js/moment.js');
+app.import('bower_components/ember-cli-datepicker/js/pikaday.js');
+app.import('bower_components/ember-cli-datepicker/styles/pikaday.css');
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
@@ -28,5 +28,5 @@ app.import('vendor/ember-cli-datepicker/styles/pikaday.css');
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('vendor/bootstrap/dist/css/bootstrap.css');
+app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 module.exports = app.toTree();

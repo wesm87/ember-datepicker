@@ -1,7 +1,8 @@
 /* global require */
 
-var Application = require('ember-datepicker/app')['default'];
-var Router = require('ember-datepicker/router')['default'];
+var Application = require('ember-cli-datepicker/app')['default'];
+var Router = require('ember-cli-datepicker/router')['default'];
+import Ember from 'ember';
 
 export default function startApp(attrs) {
   var App;
@@ -9,7 +10,7 @@ export default function startApp(attrs) {
   var attributes = Ember.merge({
     // useful Test defaults
     rootElement: '#ember-testing',
-    LOG_ACTIVE_GENERATION:false,
+    LOG_ACTIVE_GENERATION: false,
     LOG_VIEW_LOOKUPS: false
   }, attrs); // but you can override;
 
@@ -17,7 +18,7 @@ export default function startApp(attrs) {
     location: 'none'
   });
 
-  Ember.run(function(){
+  Ember.run(function() {
     App = Application.create(attributes);
     App.setupForTesting();
     App.injectTestHelpers();
