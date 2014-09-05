@@ -1,11 +1,26 @@
 <div class="row">
   <div class="col-md-6">
-    {{date-picker date=date valueFormat='YYYY-MM-DD'}}
+    <h6>Date from string</h6>
+    {{date-picker date=date valueFormat='YYYY-MM-DD' numberOfMonths=3}}
   </div>
   <div class="col-md-6">
     <dl class="dl-horizontal">
       <dt>Formatted date</dt><dd>{{formattedDate}}</dd>
       <dt>Timestamp</dt><dd>{{timestamp}}</dd>
+    </dl>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-6">
+    <h6>Date from javascript date</h6>
+    {{date-picker date=jsDate valueFormat='date'
+                  outputFormat="dd Do MMM 'YY"}}
+  </div>
+  <div class="col-md-6">
+    <dl class="dl-horizontal">
+      <dt>Formatted date</dt><dd>{{jsFormattedDate}}</dd>
+      <dt>UTC String</dt><dd>{{jsUTCString}}</dd>
     </dl>
   </div>
 </div>

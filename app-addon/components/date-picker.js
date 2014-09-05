@@ -19,10 +19,13 @@ export default Em.TextField.extend({
           yearRange: that.get('yearRange'),
           numberOfMonths: that.get('numberOfMonths'),
           onClose: function() {
-            // update date value with user selected date. Keeps format 
-            // consistent
-            var d = window.moment(that.get('value'), that.get('outputFormat'))
-                                  .format(that.get('valueFormat'));
+            // update date value with user selected date with consistent format
+            var d = window.moment(that.get('value'), that.get('outputFormat'));
+            if (that.get('valueFormat') === 'date') {
+              d = d.toDate();
+            } else {
+              d = d.format(that.get('valueFormat'));
+            }
             that.set('date', d);
           }
         });
@@ -31,9 +34,13 @@ export default Em.TextField.extend({
   },
   setDate: function() {
     // setting date in widget
-    var d = window.moment();
+    var d = null;
     if (!Em.isBlank(this.get('date'))) {
-      d = window.moment(this.get('date'), this.get("valueFormat"));
+      if (this.get('valueFormat') === 'date') {
+        d = window.moment(this.get('date'));
+      } else {
+        d = window.moment(this.get('date'), this.get("valueFormat"));
+      }
     }
     this.get('_picker').setDate(d.format(this.get('outputformat')));
   }
