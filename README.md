@@ -17,7 +17,7 @@ When calling the the datepicker, the following options are available:
 ### General Options
 
 #### date
-Type: `String or Date1
+Type: `String` or `Date`
 
 This variable will be changed when the user changes the date. It will be
 updated using the `valueFormat` specified.
@@ -51,4 +51,4 @@ definition:
 Type: `Number`
 Default: `1`
 
-The number of months to display in the datepicker component
+The number of months to display in the datepicker component.
