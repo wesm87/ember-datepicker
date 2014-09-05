@@ -13,6 +13,13 @@ npm install ember-cli-datepicker --save-dev
 
 ## Demo
 Check out the demo on [github pages](http://gevious.github.io/ember-datepicker/ "Ember-datepicker Demo").
+Alternatively you can clone this repo and run the app
+
+    sudo npm install -g ember-cli
+    git clone git@github.com:gevious/ember-datepicker
+    cd ember-datepicker
+    npm install; bower install
+    ember serve
 
 ## Options
 When calling the the datepicker, the following options are available:
