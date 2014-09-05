@@ -7,9 +7,12 @@ to create an extensible ember component.
 ## Installation
 npm install ember-cli-datepicker --save-dev
 
-##Basic Usage
+## Basic Usage
 
   {{date-picker date=mydate valueFormat='YYYY-MM-DD'}}
+
+## Demo
+Check out the demo on [github pages](http://gevious.github.io/ember-datepicker/ "Ember-datepicker Demo").
 
 ## Options
 When calling the the datepicker, the following options are available:
