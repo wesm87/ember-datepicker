@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-datepicker",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "An Ember datepicker component using Pikaday and momentjs",
   "ember-addon": {
     "main": "lib/ember-cli-datepicker.js"
