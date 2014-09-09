@@ -41,6 +41,8 @@ export default Em.TextField.extend({
       } else {
         d = window.moment(this.get('date'), this.get("valueFormat"));
       }
+    } else {
+      d = window.moment();
     }
     this.get('_picker').setDate(d.format(this.get('outputformat')));
   }
