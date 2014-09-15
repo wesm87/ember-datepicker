@@ -1,4 +1,5 @@
 #Ember CLI Datepicker
+[![Build Status](https://travis-ci.org/iStefo/ember-datepicker.svg)](https://travis-ci.org/iStefo/ember-datepicker)
 
 ## Description
 This component is an Ember CLI add-on and uses moment.js along with pickaday
