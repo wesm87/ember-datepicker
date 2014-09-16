@@ -6,6 +6,7 @@ to create an extensible ember component.
 
 ## Installation
 npm install ember-cli-datepicker --save-dev
+ember g ember-cli-datepicker
 
 ## Basic Usage
 
