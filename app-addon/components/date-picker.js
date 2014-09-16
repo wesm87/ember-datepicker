@@ -8,6 +8,7 @@ export default Em.TextField.extend({
   outputFormat: 'YYYY-MM-DD', // the format to display in the text field
   numberOfMonths: 1,          // the "width" of date picker
   allowBlank: false,          // wheter `null` input/result is acceptable
+  date: null,
   yearRange: function() {
     var cy = window.moment().year();
     return [cy-3, cy+4];
@@ -66,6 +67,15 @@ export default Em.TextField.extend({
 
     // initially sync Pikaday with external `date` value
     this.setDate();
+  },
+
+  /**
+   * Propper teardown to remove Pickady from the dom when the component gets
+   * destroyed.
+   */
+  willDestroyElement: function() {
+    this.get('_picker').destroy();
+    this._super();
   },
 
   /**
