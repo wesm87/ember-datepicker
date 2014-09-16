@@ -3,7 +3,7 @@
     "document": true,
     "window": true,
     "-Promise": true,
-    "EmberCliDatepickerENV": true
+    "DummyENV": true
   },
   "browser" : true,
   "boss" : true,

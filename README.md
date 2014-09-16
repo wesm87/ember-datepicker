@@ -1,65 +1,25 @@
-#Ember CLI Datepicker
+# Ember-cli-datepicker
 
-## Description
-This component is an Ember CLI add-on and uses moment.js along with pickaday
-to create an extensible ember component.
+This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
-npm install ember-cli-datepicker --save-dev
-ember g ember-cli-datepicker
 
-## Basic Usage
+* `git clone` this repository
+* `npm install`
+* `bower install`
 
-  {{date-picker date=mydate valueFormat='YYYY-MM-DD'}}
+## Running
 
-## Demo
-Check out the demo on [github pages](http://gevious.github.io/ember-datepicker/ "Ember-datepicker Demo").
-Alternatively you can clone this repo and run the app
+* `ember server`
+* Visit your app at http://localhost:4200.
 
-    sudo npm install -g ember-cli
-    git clone git@github.com:gevious/ember-datepicker
-    cd ember-datepicker
-    npm install; bower install
-    ember serve
+## Running Tests
 
-## Options
-When calling the the datepicker, the following options are available:
+* `ember test`
+* `ember test --server`
 
-### General Options
+## Building
 
-#### date
-Type: `String` or `Date`
+* `ember build`
 
-This variable will be changed when the user changes the date. It will be
-updated using the `valueFormat` specified.
-
-#### valueFormat
-Type: `String`
-Default: `X`
-
-This is the format in which the date is passed back to the controller.
-
-This format must be one of the momentjs defined formats, or be set to 'date' to
-be recognised as a Javascript Date object.
-
-#### outputFormat
-Type: `String`
-Default: `YYYY-MM-DD`
-
-This is the format in which the date is displayed in the input box.
-
-#### yearRange
-Type: `Array`
-Default: `-3 years to 4 years`
-
-This range is an array of 2 numbers, both absolute references.  For example, to
-have an absolute year range from 2000 to 2010 would need the following
-definition:
-
-    yearRange: [2000, 2010]
-
-#### numberOfMonths
-Type: `Number`
-Default: `1`
-
-The number of months to display in the datepicker component.
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).

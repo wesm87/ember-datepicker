@@ -1,0 +1,24 @@
+<div style="float: left">
+  <h6>Date from string</h6>
+  {{date-picker date=date valueFormat='YYYY-MM-DD' numberOfMonths=3}}
+</div>
+<div style="float: right">
+  <dl>
+    <dt>Formatted date</dt><dd>{{formattedDate}}</dd>
+    <dt>Timestamp</dt><dd>{{timestamp}}</dd>
+  </dl>
+</div>
+
+<div style="clear: both"></div>
+<hr/>
+
+<div style="float: left">
+  <h6>Date from javascript date</h6>
+  {{date-picker date=jsDate valueFormat='date'
+                outputFormat="dd Do MMM 'YY"}}
+</div>
+<div style="float: right">
+  <dl>
+    <dt>UTC String</dt><dd>{{jsUTCString}}</dd>
+  </dl>
+</div>
