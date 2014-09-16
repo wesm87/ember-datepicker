@@ -2,7 +2,7 @@
 
 ## Description
 This component is an Ember CLI add-on and uses moment.js along with pickaday
-to create an extensible ember component.
+to create an extensible ember component. This is still a work in progress. Pull requests are welcome.
 
 ## Installation
 npm install ember-cli-datepicker --save-dev
