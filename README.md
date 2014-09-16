@@ -1,5 +1,4 @@
-#Ember CLI Datepicker
-[![Build Status](https://travis-ci.org/iStefo/ember-datepicker.svg)](https://travis-ci.org/iStefo/ember-datepicker)
+#Ember CLI Datepicker [![Build Status](https://travis-ci.org/iStefo/ember-datepicker.svg)](https://travis-ci.org/iStefo/ember-datepicker)
 
 ## Description
 This component is an Ember CLI add-on and uses moment.js along with pickaday
@@ -63,3 +62,11 @@ Type: `Number`
 Default: `1`
 
 The number of months to display in the datepicker component.
+
+#### allowBlank
+Type: `Boolean`
+Default: `false`
+
+Can be set to allow blank dates (`date = null`). By default, `null` values will
+be replaced by the current date on initial render and every time the datepicker
+is closed. With this option, `date` may stay `null`.
