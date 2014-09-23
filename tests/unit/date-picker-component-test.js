@@ -85,6 +85,21 @@ test("it does not set bound date after open + close when `allowBlank: true`", fu
 /**
  * Misc
  */
+test("it shows date picker after click on input field", function() {
+  component = this.subject();
+
+  // initial render
+  this.$();
+
+  equal($('.pika-single').hasClass('is-hidden'), true, "date picker is initially hidden");
+
+  click(this.$());
+
+  andThen(function() {
+    equal($('.pika-single').hasClass('is-hidden'), false, "date picker is shown");
+  });
+});
+
 test("it updates displayed value when bound date changes", function() {
   component = this.subject();
 
@@ -149,3 +164,84 @@ test("it respects `valueFormat` when setting date value", function() {
     equal(component.get('date'), moment("2000-01-01").format('dddd, MMMM Do YYYY'), "sets currect date");
   });
 });
+
+/**
+ * Test `utc` option that creates date objects in UTC mode.
+ */
+test("it creates UTC timestamp when `utc: true`", function() {
+  component = this.subject();
+
+  fillIn(this.$(), "2000-01-01");
+
+  andThen(function() {
+    // simulate open + close of picker
+    component.get('_picker').show();
+    component.get('_picker').hide();
+
+    // actual UTC unix timestamp of "2000-01-01, 00:00:00"
+    var unixTimestamp2000 = 946684800;
+
+    // without utc = true, expect timestamp that differs from UTC unix timestamp
+    // by the current timezoneOffset in seconds
+    equal(component.get('date'), unixTimestamp2000 + (new Date()).getTimezoneOffset()*60,
+      "outputs timestamp that differs by timezoneOffset when utc = false");
+
+    component.set('utc', true);
+
+    // simulate open + close of picker
+    component.get('_picker').show();
+    component.get('_picker').hide();
+
+    equal(component.get('date'), unixTimestamp2000,
+      "outputs exact timestamp of date when utc = true");
+  });
+});
+
+test("it creates UTC date object when `utc: true`", function() {
+  component = this.subject({
+    valueFormat: 'date'
+  });
+
+  fillIn(this.$(), "2000-01-01");
+
+  andThen(function() {
+    // simulate open + close of picker
+    component.get('_picker').show();
+    component.get('_picker').hide();
+
+    equal(component.get('date').toISOString(), moment("2000-01-01").toDate().toISOString(),
+      "outputs regular date that equals locally generated date when utc = false");
+
+    component.set('utc', true);
+
+    // simulate open + close of picker again
+    component.get('_picker').show();
+    component.get('_picker').hide();
+
+    equal(component.get('date').toISOString(), "2000-01-01T00:00:00.000Z",
+      "outputs regular date that equals utc date when utc = true");
+  });
+});
+
+
+/*
+  This test makes PhantomJS fail because of the click(document.body) which's
+  event handling seems off compared to Chrome/FF :(
+
+  test("it hides date picker after click outside", function() {
+    expect(2);
+    component = this.subject();
+
+    // initial render
+    this.$();
+
+    equal($('.pika-single').hasClass('is-hidden'), true, "date picker is initially hidden");
+
+    click(this.$());
+    click(document.body);
+
+    andThen(function() {
+      equal($('.pika-single').hasClass('is-hidden'), true, "date picker is hidden again");
+    });
+  });
+*/

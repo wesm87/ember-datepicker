@@ -7,7 +7,8 @@ export default Em.TextField.extend({
   valueFormat: 'X',           // expect unix timestamp format from data binding
   outputFormat: 'YYYY-MM-DD', // the format to display in the text field
   numberOfMonths: 1,          // the "width" of date picker
-  allowBlank: false,          // wheter `null` input/result is acceptable
+  allowBlank: false,          // whether `null` input/result is acceptable
+  utc: false,                 // whether the input value is meant as a UTC date
   date: null,
   yearRange: function() {
     var cy = window.moment().year();
@@ -38,7 +39,9 @@ export default Em.TextField.extend({
            * Format the "outgoing" date with respect to the given`outputFormat`.
            */
           onClose: function() {
-            var d = window.moment(that.get('value'), that.get('outputFormat'));
+            // use `moment` or `moment.utc` depending on `utc` flag
+            var momentFunction = that.get('utc') ? window.moment.utc : window.moment,
+                d = momentFunction(that.get('value'), that.get('outputFormat'));
 
             // has there been a valid date or any value at all?
             if (!d.isValid() || !that.get('value')) {
