@@ -5,22 +5,31 @@ This component is an Ember CLI add-on and uses moment.js along with pickaday
 to create an extensible ember component. This is still a work in progress. Pull requests are welcome.
 
 ## Installation
-npm install ember-cli-datepicker --save-dev
-ember g ember-cli-datepicker
+```sh
+# install via npm
+$ npm install ember-cli-datepicker --save-dev
+# make ember-cli fetch internal dependencies
+$ ember g ember-cli-datepicker
+```
 
 ## Basic Usage
-
-  {{date-picker date=mydate valueFormat='YYYY-MM-DD'}}
+```handlebars
+{{date-picker date=mydate valueFormat='YYYY-MM-DD'}}
+```
 
 ## Demo
 Check out the demo on [github pages](http://gevious.github.io/ember-datepicker/ "Ember-datepicker Demo").
 Alternatively you can clone this repo and run the app
 
-    sudo npm install -g ember-cli
-    git clone git@github.com:gevious/ember-datepicker
-    cd ember-datepicker
-    npm install; bower install
-    ember serve
+```sh
+$ sudo npm install -g ember-cli
+$ git clone git@github.com:gevious/ember-datepicker
+$ cd ember-datepicker
+# install dependencies
+$ npm install; bower install
+# fire up local server
+$ ember serve
+```
 
 ## Options
 When calling the the datepicker, the following options are available:
@@ -71,3 +80,18 @@ Default: `false`
 Can be set to allow blank dates (`date = null`). By default, `null` values will
 be replaced by the current date on initial render and every time the datepicker
 is closed. With this option, `date` may stay `null`.
+
+#### utc
+Type: `Boolean`
+Default: `false`
+
+Per default, the created `date` value will obtain the computer's timezone and
+therefore not have UTC midnight as its time and will be a few hours off instead.
+
+For example, when your timezone is 8 hours ahead of UTC: Creating a date object
+from the input `"2000-01-01"` will result in `"1999-12-31T16:00:00.000Z"`,
+because when your computer has the time of 00:00:00 on Jan 1st 2000, UTC time is
+still in 1999. This is technically correct, but may not be what you want.
+
+If you want to have easy-to-compare date strings in your JSON, set `utc` to `true`
+and you will get `"2000-01-01T00:00:00.000Z"` as expected.
