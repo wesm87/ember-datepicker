@@ -11,7 +11,7 @@ export default Em.TextField.extend({
   date: null,
   yearRange: function() {
     var cy = window.moment().year();
-    return [cy-3, cy+4];
+    return "%@,%@".fmt(cy-3, cy+4);
   }.property(),               // default yearRange from -3 to +4 years
 
   _picker: null,
@@ -25,8 +25,8 @@ export default Em.TextField.extend({
         picker = new window.Pikaday({
           field: formElement,
           format: that.get('outputFormat'),
-          yearRange: that.get('yearRange'),
-          numberOfMonths: that.get('numberOfMonths'),
+          yearRange: that.get('yearRange').split(','),
+          numberOfMonths: parseInt(that.get('numberOfMonths'), 10),
           clearInvalidInput: true,
           /**
            * After the Pikaday component was closed, read the selected value
