@@ -5,12 +5,12 @@ This component is an Ember CLI add-on and uses moment.js along with pickaday
 to create an extensible ember component. This is still a work in progress. Pull requests are welcome.
 
 ## Installation
-npm install ember-cli-datepicker --save-dev
-ember g ember-cli-datepicker
+    npm install ember-cli-datepicker --save-dev
+    ember g ember-cli-datepicker
 
 ## Basic Usage
 
-  {{date-picker date=mydate valueFormat='YYYY-MM-DD'}}
+    {{date-picker date=mydate valueFormat='YYYY-MM-DD'}}
 
 ## Demo
 Check out the demo on [github pages](http://gevious.github.io/ember-datepicker/ "Ember-datepicker Demo").
