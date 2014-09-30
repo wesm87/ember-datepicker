@@ -13,10 +13,24 @@ export default Em.TextField.extend({
   yearRange: function() {
     var cy = window.moment().year();
     return "%@,%@".fmt(cy-3, cy+4);
-  }.property(),               // default yearRange from -3 to +4 years
+  }.property(), // default yearRange from -3 to +4 years
+  // A private method which returns the year range in absolute terms
+  _yearRange: function() {
+    var yr = this.get('yearRange');
+    if (!Em.$.isArray(yr)) {
+      yr = yr.split(',');
+    }
+    // assume we're in absolute form if the start year > 1000
+    if (yr[0] > 1000) {
+      return yr;
+    }
+    // relative form must be updated to absolute form
+    var cy = window.moment().year();
+    return [cy + yr[0], cy + yr[1]];
+  }.property('yearRange'),
 
   _picker: null,
-  
+
   /**
    * Setup Pikaday element after component was inserted.
    */
@@ -26,7 +40,7 @@ export default Em.TextField.extend({
         picker = new window.Pikaday({
           field: formElement,
           format: that.get('outputFormat'),
-          yearRange: that.get('yearRange').split(','),
+          yearRange: that.get('_yearRange'),
           numberOfMonths: parseInt(that.get('numberOfMonths'), 10),
           clearInvalidInput: true,
           /**

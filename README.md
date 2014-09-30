@@ -58,14 +58,12 @@ Default: `YYYY-MM-DD`
 This is the format in which the date is displayed in the input box.
 
 #### yearRange
-Type: `Array`
-Default: `-3 years to 4 years`
+Type: `String`
+Default: `-3,4` or `2010,2020`
 
-This range is an array of 2 numbers, both absolute references.  For example, to
-have an absolute year range from 2000 to 2010 would need the following
-definition:
-
-    yearRange: [2000, 2010]
+This range of years to be displayed. It is either in the form of a relative
+range (the first option goes from the current year back 3 years, and forward
+4 years), or it can be defined in absolute terms.
 
 #### numberOfMonths
 Type: `Number`
