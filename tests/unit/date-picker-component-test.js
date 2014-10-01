@@ -222,3 +222,48 @@ test("it creates UTC date object when `utc: true`", function() {
       "outputs regular date that equals utc date when utc = true");
   });
 });
+
+/**
+ * Test `yearRange` for both string and array
+ */
+test("it sets correct year range for relative string", function() {
+  component = this.subject({
+    yearRange: '-2, 3'
+  });
+
+  var cy = window.moment().year(),
+      expectedResult = [cy-2, cy+3];
+
+  equal(component.get('_yearRange')[0], expectedResult[0], "start date");
+  equal(component.get('_yearRange')[1], expectedResult[1], "end date");
+});
+
+test("it sets correct year range for absolute string", function() {
+  component = this.subject({
+    yearRange: '2000, 2020'
+  });
+
+  equal(component.get('_yearRange')[0], 2000, "start date");
+  equal(component.get('_yearRange')[1], 2020, "end date");
+});
+
+test("it sets correct year range for relative array", function() {
+  component = this.subject({
+    yearRange: ['-2', 3]
+  });
+
+  var cy = window.moment().year(),
+      expectedResult = [cy-2, cy+3];
+
+  equal(component.get('_yearRange')[0], expectedResult[0], "start date");
+  equal(component.get('_yearRange')[1], expectedResult[1], "end date");
+});
+
+test("it sets correct year range for absolute array", function() {
+  component = this.subject({
+    yearRange: [2000, '2020']
+  });
+
+  equal(component.get('_yearRange')[0], 2000, "start date");
+  equal(component.get('_yearRange')[1], 2020, "end date");
+});

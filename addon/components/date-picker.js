@@ -21,12 +21,12 @@ export default Em.TextField.extend({
       yr = yr.split(',');
     }
     // assume we're in absolute form if the start year > 1000
-    if (yr[0] > 1000) {
+    if (parseInt(yr[0], 10) > 1000) {
       return yr;
     }
     // relative form must be updated to absolute form
     var cy = window.moment().year();
-    return [cy + yr[0], cy + yr[1]];
+    return [cy + parseInt(yr[0], 10), cy + parseInt(yr[1], 10)];
   }.property('yearRange'),
 
   _picker: null,
