@@ -1,5 +1,9 @@
 # ember-datepicker Changelog
 
+### 1.2.2 (October 07, 2014)
+
+* Updated ember-cli to 0.1.0
+
 ### 1.2.1 (October 01, 2014)
 
 * Allowed yearRange to be defined as string or array

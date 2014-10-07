@@ -1,10 +1,10 @@
 {
   "name": "ember-cli-datepicker",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "An Ember datepicker component using Pikaday and momentjs",
   "directories": {
     "doc": "doc",
-    "test": "test"
+    "test": "tests"
   },
   "scripts": {
     "start": "ember server",
@@ -36,19 +36,21 @@
   "homepage": "https://github.com/gevious/ember-datepicker",
   "devDependencies": {
     "body-parser": "^1.2.0",
-    "broccoli-asset-rev": "0.0.17",
+    "broccoli-asset-rev": "0.3.0",
     "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "ember-cli": "0.0.44",
-    "ember-cli-ember-data": "0.1.0",
+    "ember-cli": "0.1.1",
+    "ember-cli-content-security-policy": "0.2.0",
     "ember-cli-ic-ajax": "0.1.1",
-    "ember-cli-qunit": "0.0.5",
+    "ember-cli-inject-live-reload": "^1.2.2",
+    "ember-cli-qunit": "0.1.0",
+    "ember-data": "1.0.0-beta.10",
     "express": "^4.8.5",
     "glob": "^4.0.5"
   },
-  "readme": "# Ember-cli-datepicker\n\nThis README outlines the details of collaborating on this Ember addon.\n\n## Installation\n\n* `git clone` this repository\n* `npm install`\n* `bower install`\n\n## Running\n\n* `ember server`\n* Visit your app at http://localhost:4200.\n\n## Running Tests\n\n* `ember test`\n* `ember test --server`\n\n## Building\n\n* `ember build`\n\nFor more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).\n",
-  "readmeFilename": "README.md",
-  "gitHead": "63b95c6bb4daf6e04ccdf5afda156d0dfdcd852b",
-  "_id": "ember-cli-datepicker@1.0.0",
-  "_shasum": "59d8044d0f144d1cca163cf42b1cea55d025d588",
-  "_from": "ember-cli-datepicker@"
+  "keywords": [
+    "ember-addon"
+  ],
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
+  }
 }
