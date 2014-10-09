@@ -1,5 +1,10 @@
 # ember-datepicker Changelog
 
+### 1.2.3 (October 09, 2014)
+
+* Changed `momentjs` to `moment`
+* Changed `bower_components` references to `app.bowerDirectory`
+
 ### 1.2.2 (October 07, 2014)
 
 * Updated ember-cli to 0.1.0
