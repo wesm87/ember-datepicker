@@ -68,14 +68,7 @@ export default Em.TextField.extend({
               }
             }
 
-            // update date value with user selected date with consistent format
-            if (that.get('valueFormat') === 'date') {
-              d = d.toDate();
-            } else {
-              d = d.format(that.get('valueFormat'));
-            }
-
-            that.set('date', d);
+            that._setControllerDate(d);
           }
         });
 
@@ -84,6 +77,19 @@ export default Em.TextField.extend({
 
     // initially sync Pikaday with external `date` value
     this.setDate();
+  },
+  /**
+   * Set the date on the controller.
+   */
+  _setControllerDate: function(d) {
+      // update date value with user selected date with consistent format
+      if (this.get('valueFormat') === 'date') {
+        d = d.toDate();
+      } else {
+        d = d.format(this.get('valueFormat'));
+      }
+
+      this.set('date', d);
   },
 
   /**
@@ -122,6 +128,9 @@ export default Em.TextField.extend({
         d = window.moment(null);
       } else {
         d = window.moment();
+        // also set the controllers date here. If the controller passes in a
+        // null date, it is assumed that todays date should be used
+        this._setControllerDate(d);
       }
     }
     this.get('_picker').setDate(d.format(this.get('outputformat')));

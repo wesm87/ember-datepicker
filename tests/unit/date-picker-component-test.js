@@ -53,10 +53,13 @@ test("it displays nothing when no date is set and `allowBlank: true`", function(
  * with and without `allowBlank`
  */
 test("it sets bound date after open + close", function() {
-  component = this.subject();
+  component = this.subject({
+    allowBlank: false
+  });
 
   this.$();
-  equal(component.get('date'), null, "has no initial date");
+  var todaysDate = moment().format(component.get('valueFormat'));
+  equal(component.get('date'), todaysDate, "has initial date of today");
 
   // simulate open + close of picker
   component.get('_picker').show();

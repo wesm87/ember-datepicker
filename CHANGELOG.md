@@ -1,5 +1,10 @@
 # ember-datepicker Changelog
 
+### 1.2.4 (October 28, 2014)
+
+* Controller updated with today's date if null date is passed in
+* Auto install of dependencies when addon is installed
+
 ### 1.2.3 (October 09, 2014)
 
 * Changed `momentjs` to `moment`
