@@ -7,6 +7,7 @@ export default Em.TextField.extend({
   valueFormat: 'X',           // expect unix timestamp format from data binding
   outputFormat: 'YYYY-MM-DD', // the format to display in the text field
   numberOfMonths: 1,          // the "width" of date picker
+  firstDayOfWeek: 0,          // first day of the week (0: Sunday, 1: Monday, etc)
   allowBlank: false,          // whether `null` input/result is acceptable
   utc: false,                 // whether the input value is meant as a UTC date
   date: null,
@@ -40,6 +41,7 @@ export default Em.TextField.extend({
         picker = new window.Pikaday({
           field: formElement,
           format: that.get('outputFormat'),
+          firstDay: that.get('firstDayOfWeek'),
           yearRange: that.get('_yearRange'),
           numberOfMonths: parseInt(that.get('numberOfMonths'), 10),
           clearInvalidInput: true,
