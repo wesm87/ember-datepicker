@@ -1,5 +1,9 @@
 # ember-datepicker Changelog
 
+### 1.2.4 (November 04, 2014)
+
+* Can now change the displayed first day of the week
+
 ### 1.2.4 (October 28, 2014)
 
 * Controller updated with today's date if null date is passed in

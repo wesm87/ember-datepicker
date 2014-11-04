@@ -24,6 +24,7 @@ moduleForComponent('date-picker', 'ember-cli-datepicker component', {
  * with the `allowBlank` option
  */
 test("it displays today's date with default format when no date is set", function() {
+  expect(1);
   component = this.subject();
   var formattedDate = moment().format(component.get('outputFormat'));
 
@@ -31,6 +32,7 @@ test("it displays today's date with default format when no date is set", functio
 });
 
 test("it displays today's date with custom `outputFormat` when no date is set", function() {
+  expect(1);
   component = this.subject({
     outputFormat: 'DD.MM.YY'
   });
@@ -40,6 +42,7 @@ test("it displays today's date with custom `outputFormat` when no date is set", 
 });
 
 test("it displays nothing when no date is set and `allowBlank: true`", function() {
+  expect(1);
   component = this.subject({
     allowBlank: true
   });
@@ -53,6 +56,7 @@ test("it displays nothing when no date is set and `allowBlank: true`", function(
  * with and without `allowBlank`
  */
 test("it sets bound date after open + close", function() {
+  expect(2);
   component = this.subject({
     allowBlank: false
   });
@@ -69,6 +73,7 @@ test("it sets bound date after open + close", function() {
 });
 
 test("it does not set bound date after open + close when `allowBlank: true`", function() {
+  expect(2);
   component = this.subject({
     allowBlank: true
   });
@@ -89,6 +94,7 @@ test("it does not set bound date after open + close when `allowBlank: true`", fu
  * Misc
  */
 test("it shows date picker after click on input field", function() {
+  expect(2);
   component = this.subject();
 
   // initial render
@@ -104,6 +110,7 @@ test("it shows date picker after click on input field", function() {
 });
 
 test("it updates displayed value when bound date changes", function() {
+  expect(1);
   component = this.subject();
 
   // initial render
@@ -121,6 +128,7 @@ test("it updates displayed value when bound date changes", function() {
  * JS Date object
  */
 test("it respects `outputFormat` when parsing date value", function() {
+  expect(1);
   component = this.subject({
     outputFormat: 'dddd, MMMM Do YYYY'
   });
@@ -137,6 +145,7 @@ test("it respects `outputFormat` when parsing date value", function() {
 });
 
 test("it respects `valueFormat: 'date'` when setting date value", function() {
+  expect(1);
   component = this.subject({
     valueFormat: 'date'
   });
@@ -153,6 +162,7 @@ test("it respects `valueFormat: 'date'` when setting date value", function() {
 });
 
 test("it respects `valueFormat` when setting date value", function() {
+  expect(1);
   component = this.subject({
     valueFormat: 'dddd, MMMM Do YYYY'
   });
@@ -172,6 +182,7 @@ test("it respects `valueFormat` when setting date value", function() {
  * Test `utc` option that creates date objects in UTC mode.
  */
 test("it creates UTC timestamp when `utc: true`", function() {
+  expect(2);
   component = this.subject();
 
   fillIn(this.$(), "2000-01-01");
@@ -201,6 +212,7 @@ test("it creates UTC timestamp when `utc: true`", function() {
 });
 
 test("it creates UTC date object when `utc: true`", function() {
+  expect(2);
   component = this.subject({
     valueFormat: 'date'
   });
@@ -230,6 +242,7 @@ test("it creates UTC date object when `utc: true`", function() {
  * Test `yearRange` for both string and array
  */
 test("it sets correct year range for relative string", function() {
+  expect(2);
   component = this.subject({
     yearRange: '-2, 3'
   });
@@ -242,6 +255,7 @@ test("it sets correct year range for relative string", function() {
 });
 
 test("it sets correct year range for absolute string", function() {
+  expect(2);
   component = this.subject({
     yearRange: '2000, 2020'
   });
@@ -251,6 +265,7 @@ test("it sets correct year range for absolute string", function() {
 });
 
 test("it sets correct year range for relative array", function() {
+  expect(2);
   component = this.subject({
     yearRange: ['-2', 3]
   });
@@ -263,6 +278,7 @@ test("it sets correct year range for relative array", function() {
 });
 
 test("it sets correct year range for absolute array", function() {
+  expect(2);
   component = this.subject({
     yearRange: [2000, '2020']
   });
