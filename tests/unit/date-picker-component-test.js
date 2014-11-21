@@ -20,21 +20,21 @@ moduleForComponent('date-picker', 'ember-cli-datepicker component', {
 });
 
 /**
- * Test initially displayed date with default and custon `outputFormat` and also
+ * Test initially displayed date with default and custon `format` and also
  * with the `allowBlank` option
  */
 test("it displays today's date with default format when no date is set", function() {
   expect(1);
   component = this.subject();
-  var formattedDate = moment().format(component.get('outputFormat'));
+  var formattedDate = moment().format(component.get('format'));
 
   equal(this.$().val(), formattedDate, "displays date");
 });
 
-test("it displays today's date with custom `outputFormat` when no date is set", function() {
+test("it displays today's date with custom `format` when no date is set", function() {
   expect(1);
   component = this.subject({
-    outputFormat: 'DD.MM.YY'
+    format: 'DD.MM.YY'
   });
   var formattedDate = moment().format('DD.MM.YY');
 
@@ -123,14 +123,14 @@ test("it updates displayed value when bound date changes", function() {
 
 
 /**
- * Test custom `outputFormat` with complex format and custom `valueFormat` with
+ * Test custom `format` with complex format and custom `valueFormat` with
  * custom string format and "date" format which causes the output of a real
  * JS Date object
  */
-test("it respects `outputFormat` when parsing date value", function() {
+test("it respects `format` when parsing date value", function() {
   expect(1);
   component = this.subject({
-    outputFormat: 'dddd, MMMM Do YYYY'
+    format: 'dddd, MMMM Do YYYY'
   });
   var formattedDate = moment("2000-01-01").format('dddd, MMMM Do YYYY');
 

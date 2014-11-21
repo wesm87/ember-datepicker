@@ -1,5 +1,11 @@
 # ember-datepicker Changelog
 
+### 1.3.0 (November 21, 2014)
+ * All pikaday options passed through
+ * [BREAKING] `outputFormat` named to `format` for pikaday consistency
+ * [BREAKING] `firstDayOfWeek` named to `firstDay` for pikaday consistency
+
+
 ### 1.2.4 (November 04, 2014)
 
 * Can now change the displayed first day of the week

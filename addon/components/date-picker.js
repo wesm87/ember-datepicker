@@ -5,9 +5,7 @@ export default Em.TextField.extend({
    * Component settings defaults
    */
   valueFormat: 'X',           // expect unix timestamp format from data binding
-  outputFormat: 'YYYY-MM-DD', // the format to display in the text field
-  numberOfMonths: 1,          // the "width" of date picker
-  firstDayOfWeek: 0,          // first day of the week (0: Sunday, 1: Monday, etc)
+  format: 'YYYY-MM-DD',       // the format to display in the text field
   allowBlank: false,          // whether `null` input/result is acceptable
   utc: false,                 // whether the input value is meant as a UTC date
   date: null,
@@ -38,12 +36,9 @@ export default Em.TextField.extend({
   didInsertElement: function(){
     var formElement = this.$()[0],
         that = this,
-        picker = new window.Pikaday({
+        pickerOptions = {
           field: formElement,
-          format: that.get('outputFormat'),
-          firstDay: that.get('firstDayOfWeek'),
           yearRange: that.get('_yearRange'),
-          numberOfMonths: parseInt(that.get('numberOfMonths'), 10),
           clearInvalidInput: true,
           /**
            * After the Pikaday component was closed, read the selected value
@@ -52,12 +47,12 @@ export default Em.TextField.extend({
            * If that value is empty or no valid date, depend on `allowBlank` if
            * the `date` binding will be set to `null` or to the current date.
            *
-           * Format the "outgoing" date with respect to the given`outputFormat`.
+           * Format the "outgoing" date with respect to the given `format`.
            */
           onClose: function() {
             // use `moment` or `moment.utc` depending on `utc` flag
             var momentFunction = that.get('utc') ? window.moment.utc : window.moment,
-                d = momentFunction(that.get('value'), that.get('outputFormat'));
+                d = momentFunction(that.get('value'), that.get('format'));
 
             // has there been a valid date or any value at all?
             if (!d.isValid() || !that.get('value')) {
@@ -72,7 +67,17 @@ export default Em.TextField.extend({
 
             that._setControllerDate(d);
           }
-        });
+        },
+        picker = null;
+
+    ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
+     'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix',
+     'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
+       if (!Em.isEmpty(that.get(f))) {
+         pickerOptions[f] = that.get(f);
+       }
+     });
+    picker = new window.Pikaday(pickerOptions);
 
     // store Pikaday element for later access
     this.set("_picker", picker);
@@ -135,6 +140,6 @@ export default Em.TextField.extend({
         this._setControllerDate(d);
       }
     }
-    this.get('_picker').setDate(d.format(this.get('outputformat')));
+    this.get('_picker').setDate(d.format());
   }.observes('date')
 });
