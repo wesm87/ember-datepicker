@@ -51,7 +51,7 @@ This is the format in which the date is passed back to the controller.
 This format must be one of the momentjs defined formats, or be set to 'date' to
 be recognised as a Javascript Date object.
 
-#### outputFormat
+#### format
 Type: `String`
 Default: `YYYY-MM-DD`
 
