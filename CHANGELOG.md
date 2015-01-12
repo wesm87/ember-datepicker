@@ -1,5 +1,8 @@
 # ember-datepicker Changelog
 
+### 1.3.2 (January 12, 2015)
+ * [UPDATE] Ember 1.9.1, Ember-cli 0.1.6
+
 ### 1.3.0 (November 21, 2014)
  * All pikaday options passed through
  * [BREAKING] `outputFormat` named to `format` for pikaday consistency
