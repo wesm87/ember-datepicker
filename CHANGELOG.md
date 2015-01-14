@@ -1,5 +1,8 @@
 # ember-datepicker Changelog
 
+### 1.3.3 (January 14, 2015)
+ * New addon install method provided in docs and package.json
+
 ### 1.3.2 (January 12, 2015)
  * [UPDATE] Ember 1.9.1, Ember-cli 0.1.6
 
