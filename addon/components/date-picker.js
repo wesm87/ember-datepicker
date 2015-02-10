@@ -133,6 +133,8 @@ export default Em.TextField.extend({
       if (this.get('allowBlank')) {
         // creates an "Invalid Date" object, which will clear the input field
         d = window.moment(null);
+        // pickaday does not update the input value correctly when the date is set back to null
+        this.$().val('');
       } else {
         d = window.moment();
         // also set the controllers date here. If the controller passes in a

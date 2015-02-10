@@ -121,6 +121,23 @@ test("it updates displayed value when bound date changes", function() {
   equal(this.$().val(), "2000-01-01", "displays new date");
 });
 
+test("it updates displayed value to nothing when date is unset after having a previous value and `allowBlank: true`", function() {
+  expect(2);
+  component = this.subject({
+    allowBlank: true
+  });
+
+  // initial render
+  this.$();
+
+  component.set('date', moment("2000-01-01").format('X'));
+
+  equal(this.$().val(), "2000-01-01", "displays new date");
+
+  component.set('date', null);
+
+  equal(this.$().val(), "", "input is empty");
+});
 
 /**
  * Test custom `format` with complex format and custom `valueFormat` with
