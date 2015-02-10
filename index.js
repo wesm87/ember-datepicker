@@ -1,3 +1,6 @@
+/* jshint node: true */
+'use strict';
+
 module.exports = {
   name: 'ember-cli-datepicker',
   included: function(app) {
