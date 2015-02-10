@@ -1,5 +1,12 @@
 # ember-datepicker Changelog
 
+### 2.0.1 (February 10, 2015)
+ * [FEATURE #28] Clear text input when date is reset
+
+### 2.0.0 (February 10, 2015)
+ * Updated to Ember 1.10
+ * No more handlebars dependency (rather HTMLbars)
+
 ### 1.3.3 (January 14, 2015)
  * New addon install method provided in docs and package.json
 
