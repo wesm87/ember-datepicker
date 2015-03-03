@@ -46,8 +46,10 @@ Default: `X`
 
 This is the format in which the date is passed back to the controller.
 
-This format must be one of the momentjs defined formats, or be set to 'date' to
-be recognised as a Javascript Date object.
+This format must be one of the following:
+* momentjs defined formats (http://momentjs.com/docs/#/parsing/string-format/)
+* 'date' to be recognised as a Javascript Date object.
+* 'moment' to be recognised as a Momentjs object.
 
 #### format
 Type: `String`

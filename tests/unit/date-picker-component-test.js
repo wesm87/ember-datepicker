@@ -178,6 +178,23 @@ test("it respects `valueFormat: 'date'` when setting date value", function() {
   });
 });
 
+test("it respects `valueFormat: 'moment'` when setting date value", function() {
+  expect(1);
+  component = this.subject({
+    valueFormat: 'moment'
+  });
+
+  fillIn(this.$(), "2000-01-01");
+
+  andThen(function() {
+    // simulate open + close of picker
+    component.get('_picker').show();
+    component.get('_picker').hide();
+
+    equal(component.get('date').format(), moment("2000-01-01").format(), "sets correct moment object");
+  });
+});
+
 test("it respects `valueFormat` when setting date value", function() {
   expect(1);
   component = this.subject({
