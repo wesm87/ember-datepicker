@@ -143,5 +143,6 @@ export default Em.TextField.extend({
       }
     }
     this.get('_picker').setDate(d.format());
+    this.sendAction();
   }.observes('date')
 });
