@@ -83,7 +83,7 @@ export default Em.TextField.extend({
     this.set("_picker", picker);
 
     // initially sync Pikaday with external `date` value
-    this.setDate();
+    this.setDate('didInsertElement');
   },
   /**
    * Set the date on the controller.
@@ -119,7 +119,7 @@ export default Em.TextField.extend({
    * "new Date()" is used or an invalid date will force Pikaday to clear the
    * input element shown on the page.
    */
-  setDate: function() {
+  setDate: function(caller) {
     var d = null;
     if (!Em.isBlank(this.get('date'))) {
       // serialize moment.js date either from plain date object or string
@@ -143,6 +143,10 @@ export default Em.TextField.extend({
       }
     }
     this.get('_picker').setDate(d.format());
-    this.sendAction();
+    
+    if(caller === undefined) {
+      this.sendAction();  
+    }
+
   }.observes('date')
 });
