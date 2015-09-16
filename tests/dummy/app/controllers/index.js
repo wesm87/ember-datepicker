@@ -1,5 +1,6 @@
 import Em from 'ember';
 export default Em.Controller.extend({
+  visible: false,
   date: '2014-02-01',
   formattedDate: function() {
     return window.moment(this.get('date'), 'YYYY-MM-DD').format('DD/MM/YYYY');
@@ -10,5 +11,11 @@ export default Em.Controller.extend({
   jsDate: new Date(),
   jsUTCString: function() {
     return this.get('jsDate').toUTCString();
-  }.property('jsDate')
+  }.property('jsDate'),
+
+  actions: {
+    'toggleVisibility': function () {
+      this.set('visible', !this.get('visible'));
+    }
+  }
 });

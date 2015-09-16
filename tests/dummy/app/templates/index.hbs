@@ -22,3 +22,13 @@
     <dt>UTC String</dt><dd>{{jsUTCString}}</dd>
   </dl>
 </div>
+
+<div style="clear: both"></div>
+<hr/>
+
+<div>
+    <h6>Visibility toggling</h6>
+    <button {{action 'toggleVisibility'}}>Toggle visibility</button>
+    {{date-picker visible=visible}}<br/>
+    Current visibility is set to "{{visible}}"
+</div>
