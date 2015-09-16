@@ -97,3 +97,19 @@ still in 1999. This is technically correct, but may not be what you want.
 
 If you want to have easy-to-compare date strings in your JSON, set `utc` to `true`
 and you will get `"2000-01-01T00:00:00.000Z"` as expected.
+
+#### visible
+Type: `Boolean`
+Default: `false`
+
+The visibility state of the calendar.
+ * If you set this property to `true`, the calendar will be shown
+ * If you set this property to `false`, the calendar will be hidden
+ * If you close the calendar (by clicking outside for example), this property will be set to `false`
+ * If you open the calendar (by clicking on the input for example), this property will be set to `true`
+
+An example is available in this application.
+
+## Contributors
+
+ * [Brendan Rius](https://github.com/brendan-rius)

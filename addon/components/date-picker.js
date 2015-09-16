@@ -13,6 +13,7 @@ export default Em.TextField.extend({
     var cy = window.moment().year();
     return "%@,%@".fmt(cy-3, cy+4);
   }.property(), // default yearRange from -3 to +4 years
+  visible: false,             // true is visible, false otherwise
   // A private method which returns the year range in absolute terms
   _yearRange: function() {
     var yr = this.get('yearRange');
@@ -48,6 +49,10 @@ export default Em.TextField.extend({
            * the `date` binding will be set to `null` or to the current date.
            *
            * Format the "outgoing" date with respect to the given `format`.
+           *
+           * Also allows the "visible" property to stay synchronized with the real
+           * state of the calendar by updating the state to false when the calender
+           * closes.
            */
           onClose: function() {
             // use `moment` or `moment.utc` depending on `utc` flag
@@ -66,6 +71,16 @@ export default Em.TextField.extend({
             }
 
             that._setControllerDate(d);
+
+            that.set('visible', false); // We update the "visible" state when the calendar is hidden.
+          },
+
+          /**
+           * Allows the "visible" property to stay synchronized with the real state
+           * of the calendar by updating the state to true when the calendar opens.
+           */
+          onOpen: function () {
+            that.set('visible', true); // we update the "visible" state when the calendar is shown
           }
         },
         picker = null;
@@ -143,5 +158,22 @@ export default Em.TextField.extend({
       }
     }
     this.get('_picker').setDate(d.format());
-  }.observes('date')
+  }.observes('date'),
+
+  /**
+   * Show/hide the calendar depending on the "visible" property.
+   * Is "visible" is set to true, show the calendar, otherwise
+   * hide it.
+   */
+  onVisibleChanged: function () {
+    var picker = this.get('_picker');
+    var visible = this.get('visible');
+
+    if (visible === true) {
+      picker.show();
+    }
+    else {
+      picker.hide();
+    }
+  }.observes('visible')
 });
