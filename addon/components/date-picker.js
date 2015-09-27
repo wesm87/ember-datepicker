@@ -71,7 +71,7 @@ export default Em.TextField.extend({
         picker = null;
 
     ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
-     'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix',
+     'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix', 'disableWeekends', 'disableDayFn',
      'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
        if (!Em.isEmpty(that.get(f))) {
          pickerOptions[f] = that.get(f);
