@@ -92,6 +92,8 @@ export default Em.TextField.extend({
       // update date value with user selected date with consistent format
       if (this.get('valueFormat') === 'date') {
         d = d.toDate();
+      } else if (this.get('valueFormat') === 'moment') {
+        // just set date as a moment object
       } else {
         d = d.format(this.get('valueFormat'));
       }
@@ -125,6 +127,8 @@ export default Em.TextField.extend({
       // serialize moment.js date either from plain date object or string
       if (this.get('valueFormat') === 'date') {
         d = window.moment(this.get('date'));
+      } else if (this.get('valueFormat') === 'moment') {
+        d = this.get('date');
       } else {
         d = window.moment(this.get('date'), this.get("valueFormat"));
       }
