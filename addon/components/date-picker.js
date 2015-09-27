@@ -147,5 +147,23 @@ export default Em.TextField.extend({
       }
     }
     this.get('_picker').setDate(d.format());
-  }.observes('date')
+  }.observes('date'),
+  /**
+   * Update Pikaday's minDate after bound `minDate` changed and also after
+   * the initial `didInsertElement`.
+   */
+  setMinDate: function() {
+    if (!Em.isBlank(this.get('minDate'))) {
+      this.get('_picker').setMinDate(this.get('minDate'));
+    }
+  }.observes('minDate'),
+  /**
+   * Update Pikaday's maxDate after bound `maxDate` changed and also after
+   * the initial `didInsertElement`.
+   */
+  setMaxDate: function() {
+    if (!Em.isBlank(this.get('maxDate'))) {
+      this.get('_picker').setMaxDate(this.get('maxDate'));
+    }
+  }.observes('maxDate')
 });
