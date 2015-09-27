@@ -1,5 +1,8 @@
 #Ember CLI Datepicker [![Build Status](https://travis-ci.org/SquireLabs/ember-datepicker.svg)](https://travis-ci.org/SquireLabs/ember-datepicker)
 
+## Maintainer needed
+If anybody is keen to take over the maintenance of this addon, please get in touch with me. I'm no longer actively working with ember (although I still love the framework) and am not able to give this the attention it deserves.
+
 ## Description
 This component is an Ember CLI add-on and uses moment.js along with pickaday
 to create an extensible ember component. This is still a work in progress. Pull requests are welcome.
