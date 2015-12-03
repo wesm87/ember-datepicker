@@ -11,7 +11,7 @@ export default Em.TextField.extend({
   date: null,
   yearRange: function() {
     var cy = window.moment().year();
-    return "%@,%@".fmt(cy-3, cy+4);
+    return "%@,%@".loc(cy-3, cy+4);
   }.property(), // default yearRange from -3 to +4 years
   // A private method which returns the year range in absolute terms
   _yearRange: function() {
