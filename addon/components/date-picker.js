@@ -33,58 +33,62 @@ export default Em.TextField.extend({
   /**
    * Setup Pikaday element after component was inserted.
    */
-  didInsertElement: function(){
-    var formElement = this.$()[0],
-        that = this,
-        pickerOptions = {
-          field: formElement,
-          yearRange: that.get('_yearRange'),
-          clearInvalidInput: true,
-          /**
-           * After the Pikaday component was closed, read the selected value
-           * from the input field (remember we're extending Ember.TextField!).
-           *
-           * If that value is empty or no valid date, depend on `allowBlank` if
-           * the `date` binding will be set to `null` or to the current date.
-           *
-           * Format the "outgoing" date with respect to the given `format`.
-           */
-          onClose: function() {
-            // use `moment` or `moment.utc` depending on `utc` flag
-            var momentFunction = that.get('utc') ? window.moment.utc : window.moment,
-                d = momentFunction(that.get('value'), that.get('format'));
+  setup: function(){
+    Ember.run.schedule('afterRender', this, function() {
 
-            // has there been a valid date or any value at all?
-            if (!d.isValid() || !that.get('value')) {
-              if (that.get('allowBlank')) {
-                // allowBlank means `null` is ok, so use that
-                return that.set('date', null);
-              } else {
-                // "fallback" to current date
-                d = window.moment();
+      var formElement = this.$()[0],
+          that = this,
+          pickerOptions = {
+            field: formElement,
+            yearRange: that.get('_yearRange'),
+            clearInvalidInput: true,
+            /**
+             * After the Pikaday component was closed, read the selected value
+             * from the input field (remember we're extending Ember.TextField!).
+             *
+             * If that value is empty or no valid date, depend on `allowBlank` if
+             * the `date` binding will be set to `null` or to the current date.
+             *
+             * Format the "outgoing" date with respect to the given `format`.
+             */
+            onClose: function() {
+              // use `moment` or `moment.utc` depending on `utc` flag
+              var momentFunction = that.get('utc') ? window.moment.utc : window.moment,
+                  d = momentFunction(that.get('value'), that.get('format'));
+
+              // has there been a valid date or any value at all?
+              if (!d.isValid() || !that.get('value')) {
+                if (that.get('allowBlank')) {
+                  // allowBlank means `null` is ok, so use that
+                  return that.set('date', null);
+                } else {
+                  // "fallback" to current date
+                  d = window.moment();
+                }
               }
+
+              that._setControllerDate(d);
             }
+          },
+          picker = null;
 
-            that._setControllerDate(d);
-          }
-        },
-        picker = null;
+      ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
+       'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix', 'disableWeekends', 'disableDayFn',
+       'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
+         if (!Em.isEmpty(that.get(f))) {
+           pickerOptions[f] = that.get(f);
+         }
+       });
+      picker = new window.Pikaday(pickerOptions);
 
-    ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
-     'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix', 'disableWeekends', 'disableDayFn',
-     'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
-       if (!Em.isEmpty(that.get(f))) {
-         pickerOptions[f] = that.get(f);
-       }
-     });
-    picker = new window.Pikaday(pickerOptions);
+      // store Pikaday element for later access
+      this.set("_picker", picker);
 
-    // store Pikaday element for later access
-    this.set("_picker", picker);
+      // initially sync Pikaday with external `date` value
+      this.setDate();
 
-    // initially sync Pikaday with external `date` value
-    this.setDate();
-  },
+    });
+  }.on('init'),
   /**
    * Set the date on the controller.
    */
