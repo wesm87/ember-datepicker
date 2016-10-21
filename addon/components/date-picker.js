@@ -84,7 +84,7 @@ export default Ember.TextField.extend({
       picker = new window.Pikaday(pickerOptions);
 
       if (this.get('dismissOnScroll')) {
-        window.addEventHandler('scroll', () => picker.destroy(), true);
+        window.addEventListener('scroll', () => picker.hide(), true);
       }
 
       // store Pikaday element for later access
