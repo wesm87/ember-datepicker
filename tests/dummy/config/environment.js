@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
-    baseURL: '/',
+    rootURl: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -25,11 +25,14 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.contentSecurityPolicyHeader = 'Content-Security-Policy';
+    ENV.contentSecurityPolicyMeta = true;
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
+    ENV.rootUrl = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -40,7 +43,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/ember-datepicker'
+    ENV.rootUrl = '/ember-datepicker'
   }
 
   return ENV;

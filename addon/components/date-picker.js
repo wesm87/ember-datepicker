@@ -1,6 +1,6 @@
-import Em from 'ember';
+import Ember from 'ember';
 
-export default Em.TextField.extend({
+export default Ember.TextField.extend({
   /**
    * Component settings defaults
    */
@@ -8,6 +8,7 @@ export default Em.TextField.extend({
   format: 'YYYY-MM-DD',       // the format to display in the text field
   allowBlank: false,          // whether `null` input/result is acceptable
   utc: false,                 // whether the input value is meant as a UTC date
+  dismissOnScroll: false,     // whether the picker should dismiss on any scroll event
   date: null,
   yearRange: function() {
     var cy = window.moment().year();
@@ -16,7 +17,7 @@ export default Em.TextField.extend({
   // A private method which returns the year range in absolute terms
   _yearRange: function() {
     var yr = this.get('yearRange');
-    if (!Em.$.isArray(yr)) {
+    if (!Ember.$.isArray(yr)) {
       yr = yr.split(',');
     }
     // assume we're in absolute form if the start year > 1000
@@ -75,11 +76,16 @@ export default Em.TextField.extend({
       ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
        'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix', 'disableWeekends', 'disableDayFn',
        'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
-         if (!Em.isEmpty(that.get(f))) {
+         if (!Ember.isEmpty(that.get(f))) {
            pickerOptions[f] = that.get(f);
          }
        });
+
       picker = new window.Pikaday(pickerOptions);
+
+      if (this.get('dismissOnScroll')) {
+        window.addEventHandler('scroll', () => picker.destroy(), true);
+      }
 
       // store Pikaday element for later access
       this.set("_picker", picker);
@@ -127,7 +133,7 @@ export default Em.TextField.extend({
    */
   setDate: function() {
     var d = null;
-    if (!Em.isBlank(this.get('date'))) {
+    if (!Ember.isBlank(this.get('date'))) {
       // serialize moment.js date either from plain date object or string
       if (this.get('valueFormat') === 'date') {
         d = window.moment(this.get('date'));
@@ -157,7 +163,7 @@ export default Em.TextField.extend({
    * the initial `didInsertElement`.
    */
   setMinDate: function() {
-    if (!Em.isBlank(this.get('minDate'))) {
+    if (!Ember.isBlank(this.get('minDate'))) {
       this.get('_picker').setMinDate(this.get('minDate'));
     }
   }.observes('minDate'),
@@ -166,7 +172,7 @@ export default Em.TextField.extend({
    * the initial `didInsertElement`.
    */
   setMaxDate: function() {
-    if (!Em.isBlank(this.get('maxDate'))) {
+    if (!Ember.isBlank(this.get('maxDate'))) {
       this.get('_picker').setMaxDate(this.get('maxDate'));
     }
   }.observes('maxDate')

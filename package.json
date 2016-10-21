@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/squirelabs/ember-datepicker"
+    "url": "https://github.com/onesourceinformationservices/ember-datepicker"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -25,28 +25,29 @@
     "configPath": "tests/dummy/config"
   },
   "author": {
-    "name": "Nico Gevers"
+    "name": "Trey Wood"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/squirelabs/ember-datepicker/issues"
+    "url": "https://github.com/onesourceinformationservices/ember-datepicker/issues"
   },
-  "homepage": "https://github.com/squirelabs/ember-datepicker",
+  "homepage": "https://github.com/onesourceinformationservices/ember-datepicker",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
-    "ember-cli": "0.1.12",
-    "ember-cli-6to5": "^3.0.0",
-    "ember-cli-content-security-policy": "0.3.0",
+    "ember-cli": "^2.0.0",
+    "ember-cli-babel": "~5.1.5",
+    "ember-cli-app-version": "0.3.1",
+    "ember-cli-content-security-policy": "^0.3.0",
     "ember-cli-dependency-checker": "0.0.7",
-    "ember-cli-htmlbars": "^0.6.0",
-    "ember-cli-ic-ajax": "0.1.1",
+    "ember-cli-htmlbars": "^1.0.0",
+    "ember-cli-ic-ajax": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.3.0",
     "ember-cli-qunit": "0.3.1",
-    "ember-cli-app-version": "0.3.1",
+    "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "1.0.1",
-    "ember-data": "1.0.0-beta.12",
     "ember-export-application-global": "^1.0.0",
     "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "glob": "^4.0.5",
+    "loader.js": "^4.0.11"
   }
 }
