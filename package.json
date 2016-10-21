@@ -35,8 +35,8 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
     "ember-cli": "^2.0.0",
-    "ember-cli-babel": "~5.1.5",
     "ember-cli-app-version": "0.3.1",
+    "ember-cli-babel": "~5.1.5",
     "ember-cli-content-security-policy": "^0.3.0",
     "ember-cli-dependency-checker": "0.0.7",
     "ember-cli-htmlbars": "^1.0.0",
@@ -46,6 +46,7 @@
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "1.0.1",
     "ember-export-application-global": "^1.0.0",
+    "ember-load-initializers": "0.5.1",
     "express": "^4.8.5",
     "glob": "^4.0.5",
     "loader.js": "^4.0.11"
