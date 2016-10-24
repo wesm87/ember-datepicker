@@ -9,7 +9,7 @@ export default Ember.TextField.extend({
   allowBlank: false,          // whether `null` input/result is acceptable
   utc: false,                 // whether the input value is meant as a UTC date
   dismissOnScroll: false,     // whether the picker should dismiss on any scroll event
-  sticky: false,              // whether the picker should stick next to its form element
+  scrollContainer: null,      // where to attach the picker
   date: null,
   yearRange: function() {
     var cy = window.moment().year();
@@ -38,13 +38,14 @@ export default Ember.TextField.extend({
   setup: function(){
     Ember.run.schedule('afterRender', this, function() {
 
+      var scrollElement = Ember.$(this.get('scrollContainer'))[0];
       var formElement = this.$()[0],
           that = this,
           pickerOptions = {
             field: formElement,
             yearRange: that.get('_yearRange'),
             clearInvalidInput: true,
-            container: this.get('sticky') ? formElement.parentNode : null,
+            container: scrollElement,
             /**
              * After the Pikaday component was closed, read the selected value
              * from the input field (remember we're extending Ember.TextField!).
@@ -87,6 +88,10 @@ export default Ember.TextField.extend({
 
       if (this.get('dismissOnScroll')) {
         window.addEventListener('scroll', () => picker.hide(), true);
+      }
+
+      if (scrollElement) {
+        window.addEventListener('scroll', () => picker.adjustPosition(), true);
       }
 
       // store Pikaday element for later access
