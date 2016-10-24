@@ -14,7 +14,7 @@
     "qunit": "~1.17.1"
   },
   "devDependencies": {
-    "pikaday": "~1.2.0",
+    "pikaday": "~1.4.0",
     "moment": "~2.8.3"
   }
 }
