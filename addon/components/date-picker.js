@@ -38,7 +38,7 @@ export default Ember.TextField.extend({
   setup: function(){
     Ember.run.schedule('afterRender', this, function() {
 
-      var scrollElement = Ember.$(this.get('scrollContainer'))[0];
+      var scrollElement = this.$().closest(this.get('scrollContainer'))[0];
       var formElement = this.$()[0],
           that = this,
           pickerOptions = {
