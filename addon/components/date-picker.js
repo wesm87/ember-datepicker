@@ -9,12 +9,12 @@ export default Em.TextField.extend({
   allowBlank: false,          // whether `null` input/result is acceptable
   utc: false,                 // whether the input value is meant as a UTC date
   date: null,
-  yearRange: function() {
+  yearRange: Ember.computed('yearRange', function() {
     var cy = window.moment().year();
-    return "%@,%@".fmt(cy-3, cy+4);
-  }.property(), // default yearRange from -3 to +4 years
+    return `${cy-3},${cy+4}`;
+  }),// default yearRange from -3 to +4 years
   // A private method which returns the year range in absolute terms
-  _yearRange: function() {
+  _yearRange: Ember.computed('yearRange', function(){
     var yr = this.get('yearRange');
     if (!Em.$.isArray(yr)) {
       yr = yr.split(',');
@@ -26,7 +26,7 @@ export default Em.TextField.extend({
     // relative form must be updated to absolute form
     var cy = window.moment().year();
     return [cy + parseInt(yr[0], 10), cy + parseInt(yr[1], 10)];
-  }.property('yearRange'),
+  }),
 
   _picker: null,
 
@@ -71,7 +71,7 @@ export default Em.TextField.extend({
         picker = null;
 
     ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
-     'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix', 'disableWeekends', 'disableDayFn',
+     'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix',
      'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
        if (!Em.isEmpty(that.get(f))) {
          pickerOptions[f] = that.get(f);
@@ -92,8 +92,6 @@ export default Em.TextField.extend({
       // update date value with user selected date with consistent format
       if (this.get('valueFormat') === 'date') {
         d = d.toDate();
-      } else if (this.get('valueFormat') === 'moment') {
-        // just set date as a moment object
       } else {
         d = d.format(this.get('valueFormat'));
       }
@@ -121,14 +119,12 @@ export default Em.TextField.extend({
    * "new Date()" is used or an invalid date will force Pikaday to clear the
    * input element shown on the page.
    */
-  setDate: function() {
+  setDate: Ember.observer('date', function() {
     var d = null;
     if (!Em.isBlank(this.get('date'))) {
       // serialize moment.js date either from plain date object or string
       if (this.get('valueFormat') === 'date') {
         d = window.moment(this.get('date'));
-      } else if (this.get('valueFormat') === 'moment') {
-        d = this.get('date');
       } else {
         d = window.moment(this.get('date'), this.get("valueFormat"));
       }
@@ -147,23 +143,5 @@ export default Em.TextField.extend({
       }
     }
     this.get('_picker').setDate(d.format());
-  }.observes('date'),
-  /**
-   * Update Pikaday's minDate after bound `minDate` changed and also after
-   * the initial `didInsertElement`.
-   */
-  setMinDate: function() {
-    if (!Em.isBlank(this.get('minDate'))) {
-      this.get('_picker').setMinDate(this.get('minDate'));
-    }
-  }.observes('minDate'),
-  /**
-   * Update Pikaday's maxDate after bound `maxDate` changed and also after
-   * the initial `didInsertElement`.
-   */
-  setMaxDate: function() {
-    if (!Em.isBlank(this.get('maxDate'))) {
-      this.get('_picker').setMaxDate(this.get('maxDate'));
-    }
-  }.observes('maxDate')
+  }),
 });
