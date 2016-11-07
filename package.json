@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dan-omniscience/ember-datepicker"
+    "url": "https://github.com/squirelabs/ember-datepicker"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -29,9 +29,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dan-omniscience/ember-datepicker/issues"
+    "url": "https://github.com/squirelabs/ember-datepicker/issues"
   },
-  "homepage": "https://github.com/dan-omniscience/ember-datepicker",
+  "homepage": "https://github.com/squirelabs/ember-datepicker",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
     "ember-cli": "2.8.0",
