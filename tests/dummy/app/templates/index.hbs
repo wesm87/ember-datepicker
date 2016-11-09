@@ -29,7 +29,7 @@
 
 <div style="height:500px;overflow:auto;border:1px solid #ccc">
   <div id="scrollContainer" style="height:1000px">
-    <h6>Scroll Stickiness</h6>
-    {{date-picker date=jsDate valueFormat='date' scrollContainer='#scrollContainer'}}
+    <h6>Scroll Stickiness - {{checkedValue}}</h6>
+    {{date-picker date=jsDate valueFormat='date' scrollContainer='#scrollContainer' hasNullFooter=true nullFooterCheckboxValue=checkedValue}}
   </div>
 </div>

@@ -11,6 +11,13 @@ export default Ember.TextField.extend({
   dismissOnScroll: false,     // whether the picker should dismiss on any scroll event
   scrollContainer: null,      // where to attach the picker
   date: null,
+  hasNullFooter: false,
+  nullFooterCheckboxId: `checkBox${Math.floor(Math.random() * 100000)}`,
+  nullFooterCheckboxValue: false,
+  nullFooter: (nullFooterCheckboxId, getIsChecked) => {
+    let checked = getIsChecked() ? 'checked' : '';
+    return `<hr/><label title="Empty Field entries"><input id="${nullFooterCheckboxId}" ${checked} type="checkbox">Empty Field entries</label>`;
+  },
   yearRange: function() {
     var cy = window.moment().year();
     return `${cy-3},${cy+4}`;
@@ -78,12 +85,25 @@ export default Ember.TextField.extend({
 
       ['bound', 'position', 'reposition', 'format', 'firstDay', 'minDate',
        'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix', 'disableWeekends', 'disableDayFn',
-       'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
+       'showMonthAfterYear', 'numberOfMonths', 'mainCalendar', 'footer'].forEach(function(f) {
          if (!Ember.isEmpty(that.get(f))) {
            pickerOptions[f] = that.get(f);
          }
        });
 
+       if (this.get('hasNullFooter')) {
+         let nullFooterCheckboxId = this.get('nullFooterCheckboxId');
+         pickerOptions['footer'] = this.get('nullFooter');
+         pickerOptions['nullFooterCheckboxId'] = this.get('nullFooterCheckboxId');
+         pickerOptions['getIsChecked'] = () => {
+           return this.get('nullFooterCheckboxValue');
+         };
+         pickerOptions['onFocus'] = () => {
+           Ember.$(`#${nullFooterCheckboxId}`).change((e) => {
+             this.set('nullFooterCheckboxValue', e.target.checked);
+           });
+         };
+       }
       picker = new window.Pikaday(pickerOptions);
 
       if (this.get('dismissOnScroll')) {
