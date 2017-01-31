@@ -85,7 +85,9 @@ export default Em.TextField.extend({
     this.set("_picker", picker);
 
     // initially sync Pikaday with external `date` value
-    this.setDate();
+    Em.run.next(() => {
+      this.setDate();
+    });
   },
   /**
    * Set the date on the controller.
