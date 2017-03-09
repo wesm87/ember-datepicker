@@ -52,7 +52,8 @@ export default Em.TextField.extend({
           onClose: function() {
             // use `moment` or `moment.utc` depending on `utc` flag
             var momentFunction = that.get('utc') ? window.moment.utc : window.moment,
-                d = momentFunction(that.get('value'), that.get('format'));
+                momentObject = momentFunction(that.get('value'))
+                d = momentObject(that.get('format'));
 
             // has there been a valid date or any value at all?
             if (!d.isValid() || !that.get('value')) {
