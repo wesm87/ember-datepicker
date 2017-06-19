@@ -15,10 +15,21 @@
 <div style="float: left">
   <h6>Date from javascript date (Week starting monday)</h6>
   {{date-picker date=jsDate valueFormat='date' firstDay=1
-                format="dd Do MMM 'YY'" yearRange="2013,2015"}}
+                format="dd Do MMM 'YY'" yearRange="2013,2015"
+                dismissOnScroll=true}}
 </div>
 <div style="float: right">
   <dl>
     <dt>UTC String</dt><dd>{{jsUTCString}}</dd>
   </dl>
+</div>
+
+<div style="clear: both"></div>
+<hr/>
+
+<div style="height:500px;overflow:auto;border:1px solid #ccc">
+  <div id="scrollContainer" style="height:1000px">
+    <h6>Scroll Stickiness - {{checkedValue}}</h6>
+    {{date-picker date=jsDate valueFormat='date' scrollContainer='#scrollContainer' hasNullFooter=true nullFooterCheckboxValue=checkedValue}}
+  </div>
 </div>
