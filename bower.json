@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-datepicker",
   "dependencies": {
-    "jquery": "^1.11.1",
+    "jquery": "1.11.3",
     "ember": "1.10.0",
     "ember-resolver": "~0.1.11",
     "loader.js": "ember-cli/loader.js#1.0.1",
@@ -14,7 +14,7 @@
     "qunit": "~1.17.1"
   },
   "devDependencies": {
-    "pikaday": "~1.2.0",
-    "moment": "~2.8.3"
+    "moment": "~2.8.3",
+    "pikaday": "onesourceinformationservices/pikaday#master"
   }
 }
