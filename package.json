@@ -51,6 +51,6 @@
     "loader.js": "^4.0.11"
   },
   "dependencies": {
-    "ember-cli-babel": "~5.1.5",
+    "ember-cli-babel": "~5.1.5"
   }
 }
