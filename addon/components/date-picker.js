@@ -99,6 +99,7 @@ export default Em.TextField.extend({
       }
 
       this.set('date', d);
+      this.notifyPropertyChange('date');
   },
 
   /**
