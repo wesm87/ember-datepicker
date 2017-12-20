@@ -98,8 +98,8 @@ export default Em.TextField.extend({
         d = d.format(this.get('valueFormat'));
       }
 
-      this.notifyPropertyChange('date');
       this.set('date', d);
+      this.notifyPropertyChange('date');
   },
 
   /**
