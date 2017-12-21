@@ -1,7 +1,4 @@
-#Ember CLI Datepicker [![Build Status](https://travis-ci.org/SquireLabs/ember-datepicker.svg)](https://travis-ci.org/SquireLabs/ember-datepicker)
-
-## Maintainer needed
-If anybody is keen to take over the maintenance of this addon, please get in touch with me. I'm no longer actively working with ember (although I still love the framework) and am not able to give this the attention it deserves.
+#Ember CLI Datepicker
 
 ## Description
 This component is an Ember CLI add-on and uses moment.js along with pickaday
@@ -19,12 +16,11 @@ $ ember install ember-cli-datepicker
 ```
 
 ## Demo
-Check out the demo on [github pages](http://squirelabs.github.io/ember-datepicker/ "Ember-datepicker Demo").
-Alternatively you can clone this repo and run the app
+Clone this repo and run the app:
 
 ```sh
 $ sudo npm install -g ember-cli
-$ git clone git@github.com:squirelabs/ember-datepicker
+$ git clone git@github.com:wesm87/ember-datepicker
 $ cd ember-datepicker
 # install dependencies
 $ npm install; bower install
