@@ -1,4 +1,4 @@
-#Ember CLI Datepicker
+# Ember CLI Datepicker
 
 ## Description
 This component is an Ember CLI add-on and uses moment.js along with pickaday
@@ -23,7 +23,7 @@ $ sudo npm install -g ember-cli
 $ git clone git@github.com:wesm87/ember-datepicker
 $ cd ember-datepicker
 # install dependencies
-$ npm install; bower install
+$ npm install
 # fire up local server
 $ ember serve
 ```
