@@ -1,5 +1,7 @@
 import { run } from '@ember/runloop';
 
-export default function destroyApp(application) {
+const destroyApp = application => {
   run(application, 'destroy');
-}
+};
+
+export default destroyApp;

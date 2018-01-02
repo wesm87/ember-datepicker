@@ -1,4 +1,3 @@
-/* eslint-env node */
 'use strict';
 
 module.exports = {
@@ -6,17 +5,14 @@ module.exports = {
 
   options: {
     nodeAssets: {
-      'pikaday': {
-        vendor: [
-          'pikaday.js',
-          'css/pikaday.css'
-        ]
-      }
-    }
+      pikaday: {
+        vendor: ['pikaday.js', 'css/pikaday.css'],
+      },
+    },
   },
 
   included() {
     this.import('vendor/pikaday/pikaday.js');
     this.import('vendor/pikaday/css/pikaday.css');
-  }
+  },
 };

@@ -3,7 +3,7 @@ import { test, moduleForComponent } from 'ember-qunit';
 import { fillIn } from 'ember-native-dom-helpers';
 
 moduleForComponent('date-picker', {
-  integration: false
+  integration: false,
 });
 
 /**
@@ -12,6 +12,7 @@ moduleForComponent('date-picker', {
  */
 test("it displays today's date with default format when no date is set", function(assert) {
   assert.expect(1);
+
   const component = this.subject();
   const formattedDate = moment().format(component.get('format'));
 
@@ -20,22 +21,25 @@ test("it displays today's date with default format when no date is set", functio
 
 test("it displays today's date with custom `format` when no date is set", function(assert) {
   assert.expect(1);
+
   this.subject({
-    format: 'DD.MM.YY'
+    format: 'DD.MM.YY',
   });
+
   const formattedDate = moment().format('DD.MM.YY');
 
   assert.equal(
     this.$().val(),
     formattedDate,
-    'displays date with custom format'
+    'displays date with custom format',
   );
 });
 
 test('it displays nothing when no date is set and `allowBlank: true`', function(assert) {
   assert.expect(1);
+
   this.subject({
-    allowBlank: true
+    allowBlank: true,
   });
 
   assert.equal(this.$().val(), '', 'input is empty');
@@ -47,12 +51,16 @@ test('it displays nothing when no date is set and `allowBlank: true`', function(
  */
 test('it sets bound date after open + close', function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    allowBlank: false
+    allowBlank: false,
   });
 
+  // initial render
   this.$();
+
   const todaysDate = moment().format(component.get('valueFormat'));
+
   assert.equal(component.get('date'), todaysDate, 'has initial date of today');
 
   // simulate open + close of picker
@@ -64,12 +72,14 @@ test('it sets bound date after open + close', function(assert) {
 
 test('it does not set bound date after open + close when `allowBlank: true`', function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    allowBlank: true
+    allowBlank: true,
   });
 
   // initial render
   this.$();
+
   assert.equal(component.get('date'), null, 'has no initial date');
 
   // simulate open + close of picker
@@ -81,6 +91,7 @@ test('it does not set bound date after open + close when `allowBlank: true`', fu
 
 test('it updates displayed value when bound date changes', function(assert) {
   assert.expect(1);
+
   const component = this.subject();
 
   // initial render
@@ -93,8 +104,9 @@ test('it updates displayed value when bound date changes', function(assert) {
 
 test('it updates displayed value to nothing when date is unset after having a previous value and `allowBlank: true`', function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    allowBlank: true
+    allowBlank: true,
   });
 
   // initial render
@@ -116,10 +128,13 @@ test('it updates displayed value to nothing when date is unset after having a pr
  */
 test('it respects `format` when parsing date value', async function(assert) {
   assert.expect(1);
+
   const component = this.subject({
-    format: 'dddd, MMMM Do YYYY'
+    format: 'dddd, MMMM Do YYYY',
   });
   const formattedDate = moment('2000-01-01').format('dddd, MMMM Do YYYY');
+
+  // initial render
   this.$();
 
   await fillIn('input', formattedDate);
@@ -130,15 +145,18 @@ test('it respects `format` when parsing date value', async function(assert) {
   assert.equal(
     component.get('date'),
     moment('2000-01-01').format('X'),
-    'sets correct date'
+    'sets correct date',
   );
 });
 
 test("it respects `valueFormat: 'date'` when setting date value", async function(assert) {
   assert.expect(1);
+
   const component = this.subject({
-    valueFormat: 'date'
+    valueFormat: 'date',
   });
+
+  // initial render
   this.$();
 
   await fillIn('input', '2000-01-01');
@@ -152,15 +170,18 @@ test("it respects `valueFormat: 'date'` when setting date value", async function
     moment('2000-01-01')
       .toDate()
       .toString(),
-    'sets correct date'
+    'sets correct date',
   );
 });
 
 test("it respects `valueFormat: 'moment'` when setting date value", async function(assert) {
   assert.expect(1);
+
   const component = this.subject({
-    valueFormat: 'moment'
+    valueFormat: 'moment',
   });
+
+  // initial render
   this.$();
 
   await fillIn('input', '2000-01-01');
@@ -172,15 +193,18 @@ test("it respects `valueFormat: 'moment'` when setting date value", async functi
   assert.equal(
     component.get('date').format(),
     moment('2000-01-01').format(),
-    'sets correct moment object'
+    'sets correct moment object',
   );
 });
 
 test('it respects `valueFormat` when setting date value', async function(assert) {
   assert.expect(1);
+
   const component = this.subject({
-    valueFormat: 'dddd, MMMM Do YYYY'
+    valueFormat: 'dddd, MMMM Do YYYY',
   });
+
+  // initial render
   this.$();
 
   await fillIn('input', '2000-01-01');
@@ -192,7 +216,7 @@ test('it respects `valueFormat` when setting date value', async function(assert)
   assert.equal(
     component.get('date'),
     moment('2000-01-01').format('dddd, MMMM Do YYYY'),
-    'sets currect date'
+    'sets currect date',
   );
 });
 
@@ -201,7 +225,10 @@ test('it respects `valueFormat` when setting date value', async function(assert)
  */
 test('it creates UTC timestamp when `utc: true`', async function(assert) {
   assert.expect(2);
+
   const component = this.subject();
+
+  // initial render
   this.$();
 
   await fillIn('input', '2000-01-01');
@@ -218,7 +245,7 @@ test('it creates UTC timestamp when `utc: true`', async function(assert) {
   assert.equal(
     component.get('date'),
     unixTimestamp2000 + new Date().getTimezoneOffset() * 60,
-    'outputs timestamp that differs by timezoneOffset when utc = false'
+    'outputs timestamp that differs by timezoneOffset when utc = false',
   );
 
   component.set('utc', true);
@@ -230,15 +257,18 @@ test('it creates UTC timestamp when `utc: true`', async function(assert) {
   assert.equal(
     component.get('date'),
     unixTimestamp2000,
-    'outputs exact timestamp of date when utc = true'
+    'outputs exact timestamp of date when utc = true',
   );
 });
 
 test('it creates UTC date object when `utc: true`', async function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    valueFormat: 'date'
+    valueFormat: 'date',
   });
+
+  // initial render
   this.$();
 
   await fillIn('input', '2000-01-01');
@@ -252,7 +282,7 @@ test('it creates UTC date object when `utc: true`', async function(assert) {
     moment('2000-01-01')
       .toDate()
       .toISOString(),
-    'outputs regular date that equals locally generated date when utc = false'
+    'outputs regular date that equals locally generated date when utc = false',
   );
 
   component.set('utc', true);
@@ -264,7 +294,7 @@ test('it creates UTC date object when `utc: true`', async function(assert) {
   assert.equal(
     component.get('date').toISOString(),
     '2000-01-01T00:00:00.000Z',
-    'outputs regular date that equals utc date when utc = true'
+    'outputs regular date that equals utc date when utc = true',
   );
 });
 
@@ -273,45 +303,56 @@ test('it creates UTC date object when `utc: true`', async function(assert) {
  */
 test('it sets correct year range for relative string', function(assert) {
   assert.expect(2);
-  const component = this.subject({
-    yearRange: '-2, 3'
-  });
-  const cy = window.moment().year();
-  const expectedResult = [cy - 2, cy + 3];
 
-  assert.equal(component.get('_yearRange')[0], expectedResult[0], 'start date');
-  assert.equal(component.get('_yearRange')[1], expectedResult[1], 'end date');
+  const component = this.subject({
+    yearRange: '-2, 3',
+  });
+
+  const cy = window.moment().year();
+
+  const [year1, year2] = component.get('_yearRange');
+
+  assert.equal(year1, cy - 2, 'start date');
+  assert.equal(year2, cy + 3, 'end date');
 });
 
 test('it sets correct year range for absolute string', function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    yearRange: '2000, 2020'
+    yearRange: '2000, 2020',
   });
 
-  assert.equal(component.get('_yearRange')[0], 2000, 'start date');
-  assert.equal(component.get('_yearRange')[1], 2020, 'end date');
+  const [year1, year2] = component.get('_yearRange');
+
+  assert.equal(year1, 2000, 'start date');
+  assert.equal(year2, 2020, 'end date');
 });
 
 test('it sets correct year range for relative array', function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    yearRange: ['-2', 3]
+    yearRange: ['-2', 3],
   });
 
   const cy = window.moment().year();
-  const expectedResult = [cy - 2, cy + 3];
 
-  assert.equal(component.get('_yearRange')[0], expectedResult[0], 'start date');
-  assert.equal(component.get('_yearRange')[1], expectedResult[1], 'end date');
+  const [year1, year2] = component.get('_yearRange');
+
+  assert.equal(year1, cy - 2, 'start date');
+  assert.equal(year2, cy + 3, 'end date');
 });
 
 test('it sets correct year range for absolute array', function(assert) {
   assert.expect(2);
+
   const component = this.subject({
-    yearRange: [2000, '2020']
+    yearRange: [2000, '2020'],
   });
 
-  assert.equal(component.get('_yearRange')[0], 2000, 'start date');
-  assert.equal(component.get('_yearRange')[1], 2020, 'end date');
+  const [year1, year2] = component.get('_yearRange');
+
+  assert.equal(year1, 2000, 'start date');
+  assert.equal(year2, 2020, 'end date');
 });

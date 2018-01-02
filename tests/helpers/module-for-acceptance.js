@@ -1,22 +1,25 @@
 import { module } from 'qunit';
 import { resolve } from 'rsvp';
+
 import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
 
-export default function(name, options = {}) {
+const moduleForAcceptance = (name, options = {}) => {
   module(name, {
-    beforeEach() {
+    beforeEach(...args) {
       this.application = startApp();
 
       if (options.beforeEach) {
-        return options.beforeEach.apply(this, arguments);
+        return options.beforeEach(...args);
       }
     },
 
-    afterEach() {
-      let afterEach =
-        options.afterEach && options.afterEach.apply(this, arguments);
-      return resolve(afterEach).then(() => destroyApp(this.application));
-    }
+    afterEach(...args) {
+      const afterEachResult = options.afterEach && options.afterEach(...args);
+
+      return resolve(afterEachResult).then(() => destroyApp(this.application));
+    },
   });
-}
+};
+
+export default moduleForAcceptance;

@@ -4,7 +4,7 @@ import $ from 'jquery';
 import wait from 'ember-test-helpers/wait';
 
 moduleForComponent('date-picker', 'Integration | Component | date picker', {
-  integration: true
+  integration: true,
 });
 
 test('it shows the picker on input focus, then hides it after click outside', async function(assert) {
@@ -17,7 +17,7 @@ test('it shows the picker on input focus, then hides it after click outside', as
   assert.equal(
     $('.pika-single').hasClass('is-hidden'),
     true,
-    'date picker is initially hidden'
+    'date picker is initially hidden',
   );
 
   this.$('input').click();
@@ -26,7 +26,7 @@ test('it shows the picker on input focus, then hides it after click outside', as
   assert.equal(
     $('.pika-single').hasClass('is-hidden'),
     false,
-    'date picker is visible'
+    'date picker is visible',
   );
 
   document.body.click();
@@ -35,6 +35,6 @@ test('it shows the picker on input focus, then hides it after click outside', as
   assert.equal(
     $('.pika-single').hasClass('is-hidden'),
     true,
-    'date picker is hidden again'
+    'date picker is hidden again',
   );
 });

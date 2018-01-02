@@ -1,14 +1,15 @@
-import Em from 'ember';
-export default Em.Controller.extend({
+import { Controller, computed } from 'ember';
+
+export default Controller.extend({
   date: '2014-02-01',
-  formattedDate: function() {
-    return window.moment(this.get('date'), 'YYYY-MM-DD').format('DD/MM/YYYY');
-  }.property('date'),
-  timestamp: function() {
-    return window.moment(this.get('date'), 'YYYY-MM-DD').format('X');
-  }.property('date'),
   jsDate: new Date(),
-  jsUTCString: function() {
+  formattedDate: computed('date', () => {
+    return window.moment(this.get('date'), 'YYYY-MM-DD').format('DD/MM/YYYY');
+  }),
+  timestamp: computed('date', () => {
+    return window.moment(this.get('date'), 'YYYY-MM-DD').format('X');
+  }),
+  jsUTCString: computed('jsDate', () => {
     return this.get('jsDate').toUTCString();
-  }.property('jsDate')
+  }),
 });
