@@ -1,9 +1,10 @@
 import TextField from '@ember/component/text-field';
 import $ from 'jquery';
-import moment from 'moment';
 import { computed, observer } from '@ember/object';
 import { isBlank, isEmpty } from '@ember/utils';
+//import moment from 'moment';
 
+/*global moment*/
 export default TextField.extend({
   /**
    * Component settings defaults
@@ -13,6 +14,8 @@ export default TextField.extend({
   allowBlank: false, // whether `null` input/result is acceptable
   utc: false, // whether the input value is meant as a UTC date
   date: null,
+  oldtz: 'utc',
+  tz: 'utc', //timezone
 
   yearRange: computed(function() {
     const cy = moment().year();
@@ -20,6 +23,10 @@ export default TextField.extend({
     return `${cy - 3},${cy + 4}`;
   }),
 
+  //will be called by pickaday to display the value in textfield.
+  toString: function(d, format) {
+    return moment(d).format(format);
+  },
   // A private method which returns the year range in absolute terms
   _yearRange: computed('yearRange', function() {
     var yr = this.get('yearRange');
@@ -60,8 +67,9 @@ export default TextField.extend({
           // use `moment` or `moment.utc` depending on `utc` flag
           var momentFunction = that.get('utc')
               ? window.moment.utc
-              : window.moment,
-            d = momentFunction(that.get('value'), that.get('format'));
+              : window.moment;
+          //since value is the one in input field, so it should be formated with 'format'.
+          var d = momentFunction(that.get('value'), that.get('format'));
 
           // has there been a valid date or any value at all?
           if (!d.isValid() || !that.get('value')) {
@@ -95,7 +103,8 @@ export default TextField.extend({
       'disableDayFn',
       'showMonthAfterYear',
       'numberOfMonths',
-      'mainCalendar'
+      'mainCalendar',
+      'toString'
     ].forEach(f => {
       if (!isEmpty(that.get(f))) {
         pickerOptions[f] = this.get(f);
@@ -135,6 +144,14 @@ export default TextField.extend({
     this._super();
   },
 
+  convertDate: function(d) {
+    if (this.get('oldtz') != this.get('tz')) {
+      this.set('oldtz', this.get('tz'));
+      return moment.tz(d.valueOf(), this.get('oldtz')).tz(this.get('tz'));
+    } else {
+      return d;
+    }
+  },
   /**
    * Update Pikaday's displayed date after bound `date` changed and also after
    * the initial `didInsertElement`.
@@ -146,7 +163,7 @@ export default TextField.extend({
    * "new Date()" is used or an invalid date will force Pikaday to clear the
    * input element shown on the page.
    */
-  setDate: observer('date', function() {
+  setDate: observer('date','tz', function() {
     var d = null;
     if (!isBlank(this.get('date'))) {
       // serialize moment.js date either from plain date object or string
@@ -171,7 +188,8 @@ export default TextField.extend({
         this._setControllerDate(d);
       }
     }
-    this.get('_picker').setDate(d.format());
+    d = this.convertDate(d);
+    this.get('_picker').setDate(d.format(this.get('format')));
   }),
   /**
    * Update Pikaday's minDate after bound `minDate` changed and also after

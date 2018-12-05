@@ -6,6 +6,11 @@ This component is an Ember CLI addon and uses moment.js along with pickaday
 to create an extensible Ember component. This is still a work in progress.
 Pull requests are welcome.
 
+Note: extend this compoment to support timezone feature, when timezone changes, the date will change accordingly.
+```handlebars
+{{date-picker date=mydate tz='Africa/Abidjan' valueFormat="YYYY-MM-DD"}}
+```
+
 ## Installation
 
 ```sh
@@ -55,7 +60,7 @@ using the `valueFormat` specified.
 
 #### valueFormat
 
-Type: `String`  
+Type: `String`
 Default: `'X'`
 
 This is the format in which the date is passed back to the controller.
@@ -67,7 +72,7 @@ Must be one of the following:
 
 #### format
 
-Type: `String`  
+Type: `String`
 Default: `'YYYY-MM-DD'`
 
 This is the format in which the date is displayed in the input box.
@@ -76,7 +81,7 @@ Must be [a valid moment.js format](http://momentjs.com/docs/#/parsing/string-for
 
 #### yearRange
 
-Type: `String | Array<Number>`  
+Type: `String | Array<Number>`
 Default: `'-3, 4'`
 
 This range of years to be displayed. It is either in the form of a relative
@@ -91,14 +96,14 @@ array.  Here are some examples of valid inputs.
 
 #### numberOfMonths
 
-Type: `Number`  
+Type: `Number`
 Default: `1`
 
 The number of months to display in the datepicker component.
 
 #### allowBlank
 
-Type: `Boolean`  
+Type: `Boolean`
 Default: `false`
 
 Can be set to allow blank dates (`date = null`). By default, `null` values will
@@ -107,7 +112,7 @@ is closed. With this option, `date` may stay `null`.
 
 #### utc
 
-Type: `Boolean`  
+Type: `Boolean`
 Default: `false`
 
 Per default, the created `date` value will obtain the computer's timezone and
