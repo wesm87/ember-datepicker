@@ -2,7 +2,7 @@
 
 ## Description
 
-This component is an Ember CLI addon and uses moment.js along with pickaday
+This component is an Ember CLI addon and uses moment.js along with Pikaday
 to create an extensible Ember component. This is still a work in progress.
 Pull requests are welcome.
 
