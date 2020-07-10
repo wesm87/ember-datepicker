@@ -1,40 +1,45 @@
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
-import $ from 'jquery';
-import wait from 'ember-test-helpers/wait';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find, waitFor, click } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 
-moduleForComponent('date-picker', 'Integration | Component | date picker', {
-  integration: true
-});
+module('Integration | Component | date-picker', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it shows the picker on input focus, then hides it after click outside', async function(assert) {
-  assert.expect(3);
+  test('it renders', async function (assert) {
+    await render(hbs`<DatePicker />`);
 
-  this.render(hbs`
-    {{date-picker}}
-  `);
+    assert.equal(this.element.textContent.trim(), '');
+  });
 
-  assert.equal(
-    $('.pika-single').hasClass('is-hidden'),
-    true,
-    'date picker is initially hidden'
-  );
+  test('it shows the picker on input focus, then hides it after click outside', async function (assert) {
+    assert.expect(3);
 
-  this.$('input').click();
-  await wait();
+    await render(hbs`<DatePicker />`);
+    await waitFor('.pika-single', { timeout: 2500 });
 
-  assert.equal(
-    $('.pika-single').hasClass('is-hidden'),
-    false,
-    'date picker is visible'
-  );
+    assert.equal(
+      find('.pika-single').classList.contains('is-hidden'),
+      true,
+      'date picker is initially hidden',
+    );
 
-  document.body.click();
-  await wait();
+    const inputElement = this.element.querySelector('input');
 
-  assert.equal(
-    $('.pika-single').hasClass('is-hidden'),
-    true,
-    'date picker is hidden again'
-  );
+    await click(inputElement);
+
+    assert.equal(
+      find('.pika-single').classList.contains('is-hidden'),
+      false,
+      'date picker is visible',
+    );
+
+    await click(document.body);
+
+    assert.equal(
+      find('.pika-single').classList.contains('is-hidden'),
+      true,
+      'date picker is hidden again',
+    );
+  });
 });

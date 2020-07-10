@@ -1,22 +1,11 @@
-/* eslint-env node */
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-datepicker',
-
-  options: {
-    nodeAssets: {
-      'pikaday': {
-        vendor: [
-          'pikaday.js',
-          'css/pikaday.css'
-        ]
-      }
-    }
-  },
+  name: require('./package').name,
 
   included() {
-    this.import('vendor/pikaday/pikaday.js');
-    this.import('vendor/pikaday/css/pikaday.css');
-  }
+    this._super.included.apply(this, arguments);
+    this.import('node_modules/pikaday/pikaday.js');
+    this.import('node_modules/pikaday/css/pikaday.css');
+  },
 };

@@ -16,7 +16,7 @@ $ ember install ember-cli-datepicker
 ## Basic Usage
 
 ```handlebars
-{{date-picker date=mydate valueFormat="YYYY-MM-DD"}}
+<DatePicker @date={{someDate}} @valueFormat="YYYY-MM-DD">
 ```
 
 ## Demo

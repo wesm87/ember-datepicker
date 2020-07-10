@@ -1,6 +1,3 @@
-/* eslint-env node */
 'use strict';
 
-module.exports = function(/* environment, appConfig */) {
-  return {};
-};
+module.exports = (/* environment, appConfig */) => ({});
