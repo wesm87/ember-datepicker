@@ -76,5 +76,15 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "resolutions": {
+    "minimist": ">=0.2.1",
+    "websocket-extensions": ">=0.1.4",
+    "handlebars": ">=4.3.0",
+    "underscore.string": ">=3.3.5",
+    "js-yaml": ">=3.13.1",
+    "clean-css": ">=4.1.11",
+    "sshpk": ">=1.13.2"
+
   }
 }
